@@ -1,0 +1,21 @@
+<RCC>
+    <qresource>
+    <file>./images/exit.svg</file>
+    <file>./images/expand.svg</file>
+    <file>./images/minimize.svg</file>
+    <file>./images/logo.ico</file>
+    <file>./images/down_arrow.svg</file>
+    <file>./images/warning.svg</file>
+    <file>./images/Vector.png</file>
+    <file>./images/agility.png</file>
+    <file>./images/construction.png</file>
+    <file>./images/cooking.png</file>
+    <file>./images/hunter.png</file>
+    <file>./images/mining.png</file>
+    <file>./images/runecrafting.png</file>
+    <file>./images/smithing.png</file>
+    <file>./images/woodycutting.png</file>
+    <file>./fonts/Ubuntu-Italic.ttf</file>
+    <file>./fonts/Ubuntu-Regular.ttf</file>
+    </qresource>
+</RCC>
