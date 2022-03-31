@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QToolButton, QLabel, QVBoxLayout, QScrollArea
-from PySide6.QtCore import Qt, QSize, QMargins, Slot, QTimer
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QScrollArea
+from PySide6.QtCore import Qt, QMargins, Slot, QTimer
 
 from style import stylesheet
 from .log_entry import LogEntry

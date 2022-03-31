@@ -2,8 +2,9 @@ from functools import partial
 import keyboard
 from thread import Worker
 
-from PySide6.QtWidgets import QFrame, QToolButton, QLabel, QVBoxLayout, QGridLayout, QComboBox, \
-    QPushButton, QGraphicsDropShadowEffect
+from PySide6.QtWidgets import (
+    QFrame, QToolButton, QLabel, QVBoxLayout, QGridLayout,
+    QComboBox, QPushButton, QGraphicsDropShadowEffect)
 from PySide6.QtCore import Qt, QSize, QMargins, Slot, QRect, QPoint, Signal
 from PySide6.QtGui import QPixmap, QColor
 
@@ -106,10 +107,10 @@ class BotPage(QFrame):
 
         self._mouse_info_enabled = False
 
-        self._steps_list = {'Dense Ess': ["Find Wizard", "Fast Travel", 
-            "Climb Rock", "Walk to Runestone", "Mine", "Teleport Home",
-            "Bank Deposit"], 'Pollivneach': ["Base", "Barrel"],
-            'Donator Zone': ["Set Traps"]}
+        self._steps_list = {'Dense Ess': ["Find Wizard", "Fast Travel",
+                                          "Climb Rock", "Walk to Runestone", "Mine", "Teleport Home",
+                                          "Bank Deposit"], 'Pollivneach': ["Base", "Barrel"],
+                            'Donator Zone': ["Set Traps"]}
 
         self._mining_seconds_popup = AlertPopup(
             self.parent, 'Fill in', 'Seconds spend on mining')
@@ -200,7 +201,7 @@ class CustomSkillButton(QToolButton):
         self._title = title
         self.setObjectName(self._title)
         # self.setIcon(QPixmap(f':/images/{title}.png'))
-        self.setIcon(QPixmap(f'src/resources/{title}.png'))
+        self.setIcon(QPixmap(f'src/resources/images/{title}.png'))
         self.setIconSize(QSize(40, 40))
 
         self._popup = None

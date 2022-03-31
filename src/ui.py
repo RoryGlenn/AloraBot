@@ -10,7 +10,6 @@ import components
 class UiApp(object):
     def init_gui(self, app: App):
         app.setWindowTitle('Runescape Bot')
-        # app.setWindowIcon(QIcon(':/images/logo.ico'))
         app.setWindowIcon(QIcon('src/resources/images/logo.ico'))
         app.setObjectName('main_app')
         app.setMinimumSize(QSize(1000, 585))

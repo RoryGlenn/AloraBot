@@ -26,13 +26,14 @@ def set_font(target: QObject, size: int, italic: bool=False, bold: bool=False) -
     font_id = QFontDatabase.addApplicationFont(f'{font_name}')
     font_name = QFontDatabase.applicationFontFamilies(font_id)
 
-    # get font name
-    font = QFont(font_name[index])
-    font.setPointSize(size)
-    font.setBold(bold)
-    font.setItalic(italic)
-    font.setStyleStrategy(QFont.PreferAntialias)
-    target.setFont(font)
+    if len(font_name) > index:
+        # get font name
+        font = QFont(font_name[index])
+        font.setPointSize(size)
+        font.setBold(bold)
+        font.setItalic(italic)
+        font.setStyleStrategy(QFont.PreferAntialias)
+        target.setFont(font)
 
 
 def find_parent(obj: QObject, target: str):
