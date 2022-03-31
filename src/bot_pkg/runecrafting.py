@@ -12,7 +12,7 @@ def run():
     rune_robot.setup_bot(custom_setup)
 
     rune_robot.type_thieve()
-    
+
     # We need to first click chest
     rune_robot.click("chest")
     # Now we need to hit ESC key, we don't have an implementation for that, so let's make one:

@@ -1,8 +1,8 @@
-from PySide6.QtWidgets import QApplication, QMainWindow
 import sys
-
 import ui
-from resources import resource
+
+from PySide6.QtWidgets import QApplication, QMainWindow
+# from resources import resource
 
 
 class App(QMainWindow):
@@ -19,7 +19,7 @@ class App(QMainWindow):
 
     def mousePressEvent(self, event) -> None:
         """Handle the mouse press event in the application
-		"""
+                """
         # save drag pos to the custom title bar
         self.drag_pos = event.globalPosition().toPoint()
 

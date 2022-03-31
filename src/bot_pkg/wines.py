@@ -3,12 +3,12 @@ from .robot import Robot
 from pyautogui import click
 from path_config import wines_assets
 
+
 def run():
     robot = Robot(__file__, wines_assets)
     robot.setup_bot()
 
     sleep(3)
-
 
     robot.click("grape")
     sleep(0.3)
@@ -19,4 +19,3 @@ def run():
     robot.click("bank")
     sleep(1.5)
     robot.press_key("esc")
-

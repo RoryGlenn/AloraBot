@@ -49,7 +49,8 @@ class Robot:
                     if asset in images_confidence:
                         confidence = images_confidence[asset]
 
-                    coords = pyautogui.locateCenterOnScreen(image, confidence=confidence)
+                    coords = pyautogui.locateCenterOnScreen(
+                        image, confidence=confidence)
 
         self.move_and_click(coords, numClicks, mouse_btn)
         self.wait(asset)
@@ -84,7 +85,8 @@ class Robot:
         if asset in config:
             confidence = config[asset]
 
-        coords = pyautogui.locateCenterOnScreen('./' + asset + '.png', confidence=confidence)
+        coords = pyautogui.locateCenterOnScreen(
+            './' + asset + '.png', confidence=confidence)
         if coords:
             print("Clicking " + asset + "...")
             self.move_and_click(coords, times)

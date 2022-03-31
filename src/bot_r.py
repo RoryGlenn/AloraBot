@@ -214,7 +214,8 @@ class Bot_r(QObject):
 
     def _dense_ess_start(self):
         """Dense ess bot handle"""
-        reset_timer = denseEssProcess(self._current_phase, self._waiting, self._seconds_mining, self)
+        reset_timer = denseEssProcess(
+            self._current_phase, self._waiting, self._seconds_mining, self)
         self._timer_dense_ess_bot.setInterval(reset_timer)
         if self._bot_active:
             if not self._start_emited:
@@ -225,7 +226,8 @@ class Bot_r(QObject):
 
     def _pollivneach_start(self):
         """Pollivneach bot handle"""
-        reset_timer = pollivneachCourseFile.pollinveachCourse(self._current_phase, self)
+        reset_timer = pollivneachCourseFile.pollinveachCourse(
+            self._current_phase, self)
         self._timer_pollivneach_bot.setInterval(reset_timer)
         self._timer_pollivneach_bot.timeout.connect(self._pollivneach_start)
         if self._bot_active:

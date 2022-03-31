@@ -7,7 +7,7 @@ from style import stylesheet
 
 
 class LogEntry(QFrame):
-    
+
     def __init__(self, type_='success'):
         super(LogEntry, self).__init__()
         self.setFixedHeight(35)
@@ -15,7 +15,7 @@ class LogEntry(QFrame):
         self.layout().setSpacing(5)
         self.layout().setContentsMargins(5, 0, 5, 0)
         self.setStyleSheet(stylesheet.log_widget)
-        
+
         self._color_container = QFrame()
         self._color_container.setFixedWidth(4)
         self._color_container.setStyleSheet(stylesheet.reset_style)
@@ -23,7 +23,7 @@ class LogEntry(QFrame):
         self._color_container.layout().setSpacing(3)
         self._color_container.layout().setContentsMargins(0, 4, 0, 4)
         self.layout().addWidget(self._color_container)
-        
+
         self._color = QFrame()
         self._color.setFixedHeight(15)
         self._color_container.layout().addWidget(self._color)
@@ -31,12 +31,11 @@ class LogEntry(QFrame):
             self._color.setStyleSheet(stylesheet.log_success)
         else:
             self._color.setStyleSheet(stylesheet.log_error)
-                                      
-        
+
         self._aux_color = QFrame()
         self._aux_color.setStyleSheet(stylesheet.log_aux)
         self._color_container.layout().addWidget(self._aux_color)
-        
+
         self._info_container = QFrame()
         self._info_container.setStyleSheet(stylesheet.reset_style)
         self._info_container.setLayout(QHBoxLayout())
@@ -45,7 +44,8 @@ class LogEntry(QFrame):
         self._info_label = QLabel()
         utils.set_font(self._info_label, size=10)
         self._info_label.setStyleSheet('color: #FFFFFF')
-        self._info_container.layout().addWidget(self._info_label, alignment=Qt.AlignLeft)
-        
+        self._info_container.layout().addWidget(
+            self._info_label, alignment=Qt.AlignLeft)
+
     def set_text(self, text: str):
         self._info_label.setText(text.capitalize())

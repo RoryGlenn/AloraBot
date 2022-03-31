@@ -33,20 +33,17 @@ def set_font(target: QObject, size: int, italic: bool = False, bold: bool = Fals
     font.setBold(bold)
     font.setItalic(italic)
     font.setStyleStrategy(QFont.PreferAntialias)
-
     target.setFont(font)
 
 
 def find_parent(obj: QObject, target: str):
-    """Find the target parent of a children qobject
-    """
+    """Find the target parent of a children qobject"""
     parent = obj.parent()
 
     if hasattr(obj, 'objectName'):
-        for i in range(40):
+        for _ in range(40):
             if obj.objectName() == target:
                 return obj
             else:
                 obj = obj.parent()
-
     return None

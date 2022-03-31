@@ -9,10 +9,11 @@ from pynput.mouse import Button, Controller
 
 currentPhase = "Base"
 markOfGrace = False
-waitColor = 0;
+waitColor = 0
 defaultAttempts = 0
 waiting = False
 log_handle = None
+
 
 def endProcess():
     global currentPhase
@@ -23,6 +24,7 @@ def endProcess():
     waiting = False
     defaultAttempts = 0
     basicFunctions.upOrient()
+
 
 def pollinveachCourse(current_phase, logger):
     global markOfGrace
@@ -43,7 +45,8 @@ def pollinveachCourse(current_phase, logger):
             basicFunctions.upOrient()
             print("Moving towards agility course")
             log_handle.send_info(["Moving towards agility course", 'success'])
-            pyautogui.moveTo(1000 + random.randint(-8, 8), 45 + random.randint(-8, 8))
+            pyautogui.moveTo(1000 + random.randint(-8, 8),
+                             45 + random.randint(-8, 8))
             defaultAttempts = 0
             pyautogui.click()
             pyautogui.moveTo(500, 500)

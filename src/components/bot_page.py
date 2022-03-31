@@ -33,8 +33,10 @@ class BotPage(QFrame):
         #
         # self._key_stop = QShortcut(QKeySequence('2'), self)
         # self._key_stop.activated.connect(self._keyboard_controller)
-        self._key_start = keyboard.add_hotkey('underscore', self._keyboard_controller)
-        self._key_stop = keyboard.add_hotkey('equal', self._keyboard_controller)
+        self._key_start = keyboard.add_hotkey(
+            'underscore', self._keyboard_controller)
+        self._key_stop = keyboard.add_hotkey(
+            'equal', self._keyboard_controller)
 
         self._btns_frame = QFrame()
         self._btns_frame.setLayout(QGridLayout())
@@ -91,7 +93,8 @@ class BotPage(QFrame):
 
         self._start_btn = CustomStartButton()
         self._start_btn.clicked.connect(self._start_btn_handle)
-        self._start_container.layout().addWidget(self._start_btn, alignment=Qt.AlignCenter)
+        self._start_container.layout().addWidget(
+            self._start_btn, alignment=Qt.AlignCenter)
 
         self._start_mouse_info = QPushButton('start mouse info'.capitalize())
         self._start_mouse_info.setStyleSheet(stylesheet.mouse_btn)
@@ -109,7 +112,8 @@ class BotPage(QFrame):
                             'Donator Zone': ["Set Traps"]
                             }
 
-        self._mining_seconds_popup = AlertPopup(self.parent, 'Fill in', 'Seconds spend on mining')
+        self._mining_seconds_popup = AlertPopup(
+            self.parent, 'Fill in', 'Seconds spend on mining')
         self._mining_seconds_popup.send_seconds.connect(self._seconds_receiver)
         self._seconds_mining = None
 
@@ -211,7 +215,8 @@ class CustomSkillButton(QToolButton):
                           'woodycutting': ["Woodcutting"]}
 
     def update_popup(self, pos_spawn):
-        self._popup = BotPopUp(*self._bot_data[self._title], pos_spawn=pos_spawn)
+        self._popup = BotPopUp(
+            *self._bot_data[self._title], pos_spawn=pos_spawn)
         self._popup.send_info.connect(self._send_data)
         self._popup.show()
 

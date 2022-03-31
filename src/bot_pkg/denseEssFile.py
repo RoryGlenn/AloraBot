@@ -85,7 +85,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                     keyboard.press("left")
                     keyboard.release("left")
                     print("Desperately looking for mage")
-                    log_handle.send_info(['Desperately looking for mage', 'error'])
+                    log_handle.send_info(
+                        ['Desperately looking for mage', 'error'])
 
         elif not waiting and 39 < defaultAttempts < 70:
             if basicFunctions.checkDefault("Mage"):
@@ -107,7 +108,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                 if defaultAttempts < 50:
                     location = pyautogui.locateOnScreen(locationPic)
                     locationPoint = pyautogui.center(location)
-                    pyautogui.moveTo(locationPoint.x + random.randint(-5, 5), locationPoint.y + random.randint(-5, 5))
+                    pyautogui.moveTo(
+                        locationPoint.x + random.randint(-5, 5), locationPoint.y + random.randint(-5, 5))
                     pyautogui.click()
                     print("Warping!")
                     log_handle.send_info(['Warning!', 'error'])
@@ -139,7 +141,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
 
         elif not waiting and 20 < defaultAttempts < 40:
             print("Desperately looking for small rock")
-            log_handle.send_info(['Desperately looking for small rock', 'error'])
+            log_handle.send_info(
+                ['Desperately looking for small rock', 'error'])
             if checkDefault("Small Rock"):
                 print("Small rock found!")
                 log_handle.send_info(['Small rock found', 'success'])
@@ -160,7 +163,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
 
         elif waiting:
             print("Waiting..." + str(defaultAttempts))
-            log_handle.send_info(["Waiting..." + str(defaultAttempts), 'error'])
+            log_handle.send_info(
+                ["Waiting..." + str(defaultAttempts), 'error'])
             if grabColor() == waitColor:
                 defaultAttempts += 1
             else:
@@ -182,7 +186,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
             pyautogui.moveTo(300, 300)
         else:
             print("Waiting..." + str(defaultAttempts))
-            log_handle.send_info(["Waiting..." + str(defaultAttempts), 'error'])
+            log_handle.send_info(
+                ["Waiting..." + str(defaultAttempts), 'error'])
             if grabColor() == waitColor:
                 defaultAttempts += 1
             else:
@@ -226,7 +231,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                 keyboard.press("right")
                 keyboard.release("right")
                 print("Desperately looking for large rock")
-                log_handle.send_info(["Desperately looking for large rock", 'error'])
+                log_handle.send_info(
+                    ["Desperately looking for large rock", 'error'])
 
     elif currentPhase == "Teleport Home":
         basicFunctions.downOrient()
@@ -264,7 +270,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                     keyboard.press("left")
                     keyboard.release("left")
                     print("Desperately looking for bank")
-                    log_handle.send_info(["Desperately looking for bank", 'error'])
+                    log_handle.send_info(
+                        ["Desperately looking for bank", 'error'])
 
         else:
             try:
@@ -278,7 +285,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                 reset_timer = 3000
             except:
                 print("Looking for deposit picture...")
-                log_handle.send_info(["Looking for deposit picture...", 'error'])
+                log_handle.send_info(
+                    ["Looking for deposit picture...", 'error'])
 
     elif currentPhase == "Deposit":
         if not waiting:

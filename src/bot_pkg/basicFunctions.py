@@ -270,24 +270,29 @@ def checkDefault(object):
     global markOfGrace
     # Dense Ess defaults
     if object == "Mage":
-        pyautogui.moveTo(327 + random.randint(-50, 50), 327 + random.randint(-5, 5))
+        pyautogui.moveTo(327 + random.randint(-50, 50),
+                         327 + random.randint(-5, 5))
         return checkTooltip("Mage")
 
     elif object == "Small Rock":
-        pyautogui.moveTo(541 + random.randint(-100, 100), 519 + random.randint(-20, 20))
+        pyautogui.moveTo(541 + random.randint(-100, 100),
+                         519 + random.randint(-20, 20))
         return checkTooltip("Small Rock")
 
     elif object == "Large Rock":
-        pyautogui.moveTo(640 + random.randint(-100, 100), 441 + random.randint(-20, 20))
+        pyautogui.moveTo(640 + random.randint(-100, 100),
+                         441 + random.randint(-20, 20))
         return checkTooltip("Large Rock")
 
     elif object == "Bank":
-        pyautogui.moveTo(854 + random.randint(-30, 30), 320 + random.randint(-10, 10))
+        pyautogui.moveTo(854 + random.randint(-30, 30),
+                         320 + random.randint(-10, 10))
         return checkTooltip("Bank")
 
     # Pollinveach agility defaults
     elif object == "Barrel":
-        pyautogui.moveTo(634 + random.randint(-50, 50), 307 + random.randint(-20, 20))
+        pyautogui.moveTo(634 + random.randint(-50, 50),
+                         307 + random.randint(-20, 20))
         if checkTooltip("Barrel"):
             return True
         else:
@@ -298,46 +303,57 @@ def checkDefault(object):
                 return False
 
     elif object == "Mark of Grace":
-        pyautogui.moveTo(446 + random.randint(-30, 30), 295 + random.randint(-20, 20))
+        pyautogui.moveTo(446 + random.randint(-30, 30),
+                         295 + random.randint(-20, 20))
         return checkTooltip("Mark of Grace")
 
     elif object == "Market Stall":
         if not markOfGrace:
-            pyautogui.moveTo(534 + random.randint(-30, 30), 237 + random.randint(-20, 20))
+            pyautogui.moveTo(534 + random.randint(-30, 30),
+                             237 + random.randint(-20, 20))
         else:
-            pyautogui.moveTo(629 + random.randint(-30, 30), 336 + random.randint(-20, 20))
+            pyautogui.moveTo(629 + random.randint(-30, 30),
+                             336 + random.randint(-20, 20))
         return checkTooltip("Market Stall")
 
     elif object == "Banner":
-        pyautogui.moveTo(652 + random.randint(-30, 30), 274 + random.randint(-20, 20))
+        pyautogui.moveTo(652 + random.randint(-30, 30),
+                         274 + random.randint(-20, 20))
         return checkTooltip("Banner")
 
     elif object == "Leap Gap":
-        pyautogui.moveTo(640 + random.randint(-30, 30), 415 + random.randint(-20, 20))
+        pyautogui.moveTo(640 + random.randint(-30, 30),
+                         415 + random.randint(-20, 20))
         return checkTooltip("Leap Gap")
 
     elif object == "TreeOne":
-        pyautogui.moveTo(594 + random.randint(-30, 30), 344 + random.randint(-20, 20))
+        pyautogui.moveTo(594 + random.randint(-30, 30),
+                         344 + random.randint(-20, 20))
         return checkTooltip("TreeOne")
 
     elif object == "Rough Wall":
-        pyautogui.moveTo(452 + random.randint(-30, 30), 361 + random.randint(-20, 20))
+        pyautogui.moveTo(452 + random.randint(-30, 30),
+                         361 + random.randint(-20, 20))
         return checkTooltip("Rough Wall")
 
     elif object == "Monkeybars":
-        pyautogui.moveTo(380 + random.randint(-30, 30), 340 + random.randint(-20, 20))
+        pyautogui.moveTo(380 + random.randint(-30, 30),
+                         340 + random.randint(-20, 20))
         return checkTooltip("Monkeybars")
 
     elif object == "TreeTwo":
-        pyautogui.moveTo(591 + random.randint(-30, 30), 294 + random.randint(-20, 20))
+        pyautogui.moveTo(591 + random.randint(-30, 30),
+                         294 + random.randint(-20, 20))
         return checkTooltip("TreeTwo")
 
     elif object == "Drying Line":
-        pyautogui.moveTo(650 + random.randint(-30, 30), 378 + random.randint(-20, 20))
+        pyautogui.moveTo(650 + random.randint(-30, 30),
+                         378 + random.randint(-20, 20))
         return checkTooltip("Drying Line")
 
     elif object == "HarvestTrap":
-        pyautogui.moveTo(536 + random.randint(-10, 10), 403 + random.randint(-133, 133))
+        pyautogui.moveTo(536 + random.randint(-10, 10),
+                         403 + random.randint(-133, 133))
         return checkTooltip("Drying Line")
 
 

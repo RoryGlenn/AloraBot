@@ -5,10 +5,15 @@ import pyautogui
 import time
 import keyboard
 import random
-import win32api, win32con
+import win32api
+import win32con
 import pyperclip
 from threading import Thread
-import keyboard, threading, os, webbrowser, ctypes
+import keyboard
+import threading
+import os
+import webbrowser
+import ctypes
 import ctypes  # An included library with Python install.
 import os
 from path_config import inc
@@ -21,6 +26,7 @@ def click(x, y):
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
     time.sleep(0.1)  # This pauses the script for 0.1 seconds
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
+
 
 def setAngle():
     click(911, 49)  # navigation
@@ -68,7 +74,8 @@ def LayFunction():
     while True:
         if i != 5:
             path = os.path.join(inc, 'lay.png')
-            laybutonu = pyautogui.locateOnScreen(path, confidence=0.8, grayscale=False)
+            laybutonu = pyautogui.locateOnScreen(
+                path, confidence=0.8, grayscale=False)
             if laybutonu != None:
                 layx, layy = pyautogui.center(laybutonu)
                 time.sleep(0.5)
@@ -88,7 +95,8 @@ def LayFunction():
 def GreenFunction():
     while True:
         path = os.path.join(inc, 'red.png')
-        aramabutonured = pyautogui.locateOnScreen(path, confidence=0.65, grayscale=False)
+        aramabutonured = pyautogui.locateOnScreen(
+            path, confidence=0.65, grayscale=False)
 
         if aramabutonured != None:
             redx, redy = pyautogui.center(aramabutonured)
@@ -97,7 +105,8 @@ def GreenFunction():
 
             time.sleep(0.8)
             path = os.path.join(inc, 'reset2.png')
-            resetButonu = pyautogui.locateOnScreen(path, confidence=0.88, grayscale=False)
+            resetButonu = pyautogui.locateOnScreen(
+                path, confidence=0.88, grayscale=False)
             if resetButonu != None:
                 resetx, resety = pyautogui.center(resetButonu)
                 time.sleep(0.5)
@@ -105,7 +114,8 @@ def GreenFunction():
             else:
                 win32api.SetCursorPos((korx, kory - 70))
         path = os.path.join(inc, 'green.png')
-        aramabutonu = pyautogui.locateOnScreen(path, confidence=0.65, grayscale=False)
+        aramabutonu = pyautogui.locateOnScreen(
+            path, confidence=0.65, grayscale=False)
         if aramabutonu != None:
             korx, kory = pyautogui.center(aramabutonu)
             time.sleep(1)
@@ -113,7 +123,8 @@ def GreenFunction():
 
             time.sleep(0.8)
             path = os.path.join(inc, 'reset.png')
-            resetButonu = pyautogui.locateOnScreen(path, confidence=0.88, grayscale=False)
+            resetButonu = pyautogui.locateOnScreen(
+                path, confidence=0.88, grayscale=False)
             if resetButonu != None:
                 resetx, resety = pyautogui.center(resetButonu)
                 time.sleep(0.5)

@@ -7,7 +7,7 @@ import utils
 
 
 class LogFrame(QFrame):
-    
+
     def __init__(self):
         super(LogFrame, self).__init__()
         self.setStyleSheet(stylesheet.log_bg)
@@ -48,13 +48,13 @@ class LogFrame(QFrame):
         self._widget_wrapper.layout().setAlignment(Qt.AlignTop)
         self._widget_wrapper.layout().setSpacing(5)
         self._widget_wrapper.layout().setContentsMargins(0, 0, 5, 0)
-        
+
         self._scroll_area = QScrollArea()
         self._scroll_area.setFixedWidth(380)
-        #self._scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        #self._scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        # self._scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        # self._scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self._scroll_area.setWidgetResizable(True)
-        
+
         self._scroll_area.setStyleSheet(stylesheet.scroll_area)
         self._scroll_area.setWidget(self._widget_wrapper)
         self.layout().addWidget(self._scroll_area)
@@ -93,7 +93,7 @@ class LogFrame(QFrame):
             self._minutes += 1
             if self._minutes == 60:
                 self._minutes = 0
-                self._hours +=1
+                self._hours += 1
 
         if self._hours == 0:
             info = ''
@@ -109,8 +109,9 @@ class LogFrame(QFrame):
             info = info + f'{self._seconds}'
         self._time_info.update_info(info)
 
+
 class InfoWidget(QFrame):
-    
+
     def __init__(self, title):
         super(InfoWidget, self).__init__()
         self.setLayout(QVBoxLayout())
@@ -118,36 +119,36 @@ class InfoWidget(QFrame):
         self.layout().setContentsMargins(10, 10, 10, 10)
         self.setStyleSheet(stylesheet.info_widget)
         self.title = title
-        
+
         self._title = QLabel()
         self._title.setText(title.upper())
         self._title.setStyleSheet(stylesheet.info_widget_labels)
         utils.set_font(self._title, size=8)
         self.layout().addWidget(self._title)
-        
+
         self._info = QLabel()
         self._info.setMinimumHeight(30)
         self._info.setText(None)
         self._info.setStyleSheet(stylesheet.info_widget_labels)
         utils.set_font(self._info, size=8)
         self.layout().addWidget(self._info)
-        
+
         if title == 'skill/bot':
             color = '#F24E1E'
         elif title == 'time elapsed':
             color = '#82D930'
         else:
             color = '#CA50D9'
-        
+
         self._color_frame = QFrame()
         self._color_frame.setFixedHeight(4)
         self._color_frame.setStyleSheet(f'background: {color}; \
                                         border-radius: 2px')
-        
+
         self.layout().addWidget(self._color_frame)
-        
+
     def update_info(self, text: str):
-        #if self.title == 'status':
+        # if self.title == 'status':
         #    if text == 'stopped':
         #        self._info.setStyleSheet(f"""background: {colorscheme.transparent};
         #            color: {colorscheme.red_color}""")
