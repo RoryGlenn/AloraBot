@@ -46,7 +46,7 @@ class AlertPopup(QFrame):
         self._content_container.layout().setContentsMargins(0, 0, 0, 0)
         self._bg_container.layout().addWidget(self._content_container)
 
-        self._icon = QSvgWidget(':/images/warning.svg')
+        self._icon = QSvgWidget('src/resources/images/warning.svg')
         self._icon.setFixedSize(QSize(72, 72))
         self._content_container.layout().addWidget(
             self._icon, alignment=Qt.AlignHCenter)

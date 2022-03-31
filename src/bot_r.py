@@ -1,9 +1,7 @@
-from PySide6.QtCore import QThread, QTimer, Signal, Slot, QObject
+from PySide6.QtCore import QTimer, Signal, Slot, QObject
 
-# from pynput.mouse import Controller
 import pyautogui
 import keyboard
-import platform
 
 from bot_pkg import denseEssProcess
 from bot_pkg import pollivneachCourseFile

@@ -1,15 +1,17 @@
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QStackedWidget, QVBoxLayout
 from PySide6.QtCore import QSize, Qt, QMargins
 from PySide6.QtGui import QIcon
+from main import App
 
 from style import stylesheet
 import components
 
 
 class UiApp(object):
-    def init_gui(self, app):
+    def init_gui(self, app: App):
         app.setWindowTitle('Runescape Bot')
-        app.setWindowIcon(QIcon(':/images/logo.ico'))
+        # app.setWindowIcon(QIcon(':/images/logo.ico'))
+        app.setWindowIcon(QIcon('src/resources/images/logo.ico'))
         app.setObjectName('main_app')
         app.setMinimumSize(QSize(1000, 585))
         app.setWindowFlags(Qt.FramelessWindowHint)

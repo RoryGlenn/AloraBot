@@ -4,8 +4,7 @@ from PySide6.QtGui import QPixmap, QPainter, QFontDatabase, QFont
 
 
 def load_svg(path: str, size: QSize) -> QPixmap:
-    """Load a svg file and return a qpixmap
-    """
+    """Load a svg file and return a qpixmap"""
     svg_render = QSvgRenderer(path)
     new_image = QPixmap(size)
     painter = QPainter()
@@ -17,10 +16,10 @@ def load_svg(path: str, size: QSize) -> QPixmap:
     return new_image
 
 
-def set_font(target: QObject, size: int, italic: bool = False, bold: bool = False) -> None:
-    """Set a custom font to the target
-    """
-    font_name = ':/fonts/Ubuntu-Regular.ttf' if not italic else ':/fonts/Ubuntu-Italic.ttf'
+def set_font(target: QObject, size: int, italic: bool=False, bold: bool=False) -> None:
+    """Set a custom font to the target"""
+    # font_name = ':/fonts/Ubuntu-Regular.ttf' if not italic else ':/fonts/Ubuntu-Italic.ttf'
+    font_name = 'src/resources/fonts/Ubuntu-Regular.ttf' if not italic else 'src/resources/fonts/Ubuntu-Italic.ttf'
     index = 0
 
     # add font to app database

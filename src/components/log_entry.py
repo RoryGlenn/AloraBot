@@ -1,7 +1,5 @@
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QVBoxLayout, QLabel
-from PySide6.QtCore import Qt, QSize
-
-
+from PySide6.QtCore import Qt
 import utils
 from style import stylesheet
 

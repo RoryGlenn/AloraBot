@@ -1,4 +1,4 @@
-from PySide6.QtCore import QThread, QTimer, Signal, Slot
+from PySide6.QtCore import QThread, Signal, Slot
 from bot_r import Bot_r
 
 

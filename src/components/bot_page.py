@@ -1,18 +1,19 @@
 from functools import partial
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QToolButton, QLabel, QVBoxLayout, QGridLayout, QComboBox, \
+import keyboard
+from thread import Worker
+
+from PySide6.QtWidgets import QFrame, QToolButton, QLabel, QVBoxLayout, QGridLayout, QComboBox, \
     QPushButton, QGraphicsDropShadowEffect
 from PySide6.QtCore import Qt, QSize, QMargins, Slot, QRect, QPoint, Signal
-from PySide6.QtGui import QPixmap, QColor, QShortcut, QKeySequence, QMouseEvent
-import keyboard
+from PySide6.QtGui import QPixmap, QColor
+
 
 from style import stylesheet
 import utils
 from .popup_alerts import AlertPopup
-from thread import Worker
 
 
 class BotPage(QFrame):
-
     def __init__(self, parent, bot_handle):
         super(BotPage, self).__init__()
         self.parent = parent
@@ -105,12 +106,10 @@ class BotPage(QFrame):
 
         self._mouse_info_enabled = False
 
-        self._steps_list = {'Dense Ess': ["Find Wizard", "Fast Travel", "Climb Rock",
-                                          "Walk to Runestone", "Mine",
-                                          "Teleport Home", "Bank Deposit"],
-                            'Pollivneach': ["Base", "Barrel"],
-                            'Donator Zone': ["Set Traps"]
-                            }
+        self._steps_list = {'Dense Ess': ["Find Wizard", "Fast Travel", 
+            "Climb Rock", "Walk to Runestone", "Mine", "Teleport Home",
+            "Bank Deposit"], 'Pollivneach': ["Base", "Barrel"],
+            'Donator Zone': ["Set Traps"]}
 
         self._mining_seconds_popup = AlertPopup(
             self.parent, 'Fill in', 'Seconds spend on mining')
@@ -200,7 +199,8 @@ class CustomSkillButton(QToolButton):
 
         self._title = title
         self.setObjectName(self._title)
-        self.setIcon(QPixmap(f':/images/{title}.png'))
+        # self.setIcon(QPixmap(f':/images/{title}.png'))
+        self.setIcon(QPixmap(f'src/resources/{title}.png'))
         self.setIconSize(QSize(40, 40))
 
         self._popup = None

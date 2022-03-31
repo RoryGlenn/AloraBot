@@ -31,10 +31,10 @@ class TitleBar(QFrame):
         self.layout().addWidget(self._container)
 
         self._minimize_btn = CustomButtom(icon=utils.load_svg(
-            ':/images/minimize.svg', size=QSize(10, 1)), type_='minimize')
+            'src/resources/images/minimize.svg', size=QSize(10, 1)), type_='minimize')
         self._minimize_btn.clicked.connect(self._minimize)
         self._exit_btn = CustomButtom(icon=utils.load_svg(
-            ':/images/exit.svg', size=QSize(10, 10)))
+            'src/resources/images/exit.svg', size=QSize(10, 10)))
         self._exit_btn.clicked.connect(self._exit)
 
         for btn in [self._minimize_btn, self._exit_btn]:
