@@ -2,11 +2,11 @@ from time import sleep
 
 from .robot import Robot
 import pyautogui
-from path_config import pollivneach_assets
+from path_config import POLLIVNEACH_ASSETS
 
 
 def run():
-    polli_bot = Robot(__file__, pollivneach_assets)
+    polli_bot = Robot(__file__, POLLIVNEACH_ASSETS)
     polli_bot.setup_bot()
 
     polli_bot.click("home")

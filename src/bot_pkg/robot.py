@@ -4,7 +4,7 @@ from time import sleep
 from os import chdir, getcwd, path
 from glob import glob
 import pyautogui
-from path_config import config as config_path
+from path_config import CONFIG as config_path
 
 
 class Robot:

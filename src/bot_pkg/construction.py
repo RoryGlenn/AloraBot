@@ -3,11 +3,11 @@ from time import sleep
 import pyautogui
 
 from .robot import Robot
-from path_config import construction_assets
+from path_config import CONSTRUCTION_ASSETS
 
 def run():
     loops = 0  # You initialize loops to 0 right here and don't do the global thing
-    robot = Robot(__file__, construction_assets)
+    robot = Robot(__file__, CONSTRUCTION_ASSETS)
     robot.setup_bot()
 
     sleep(2)

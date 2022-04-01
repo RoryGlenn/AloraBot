@@ -1,11 +1,11 @@
 from time import sleep
 from .robot import Robot
 from pyautogui import click
-from path_config import wines_assets
+from path_config import WINES_ASSETS
 
 
 def run():
-    robot = Robot(__file__, wines_assets)
+    robot = Robot(__file__, WINES_ASSETS)
     robot.setup_bot()
 
     sleep(3)

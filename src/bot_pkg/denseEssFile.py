@@ -3,7 +3,7 @@ import random
 
 import keyboard
 import pyautogui
-from path_config import res_1366
+from path_config import RES_1366
 from pynput.mouse import Controller
 
 from . import basicFunctions
@@ -31,9 +31,9 @@ mouse = Controller()
 currentPhase = "Base"
 secondsMining = 140
 
-bankExitPic = os.path.join(res_1366, 'settings.PNG')
-pickaxeChiselPic = os.path.join(res_1366, 'Pickaxe Chisel2.PNG')
-locationPic = os.path.join(res_1366, 'location.PNG')
+bankExitPic = os.path.join(RES_1366, 'settings.PNG')
+pickaxeChiselPic = os.path.join(RES_1366, 'Pickaxe Chisel2.PNG')
+locationPic = os.path.join(RES_1366, 'location.PNG')
 waitColor = 0
 log_handle = None
 

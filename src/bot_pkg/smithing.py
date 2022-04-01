@@ -3,11 +3,11 @@ from time import sleep
 import pyautogui
 
 from .robot import Robot
-from path_config import smithing_assets
+from path_config import SMITHING_ASSETS
 
 
 def run():
-    robot = Robot(__file__, smithing_assets)
+    robot = Robot(__file__, SMITHING_ASSETS)
     robot.setup_bot()
 
     sleep(3)

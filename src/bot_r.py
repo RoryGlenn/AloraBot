@@ -1,34 +1,24 @@
+"""bot_r.py - does bot stuff?"""
+
 from PySide6.QtCore import QTimer, Signal, Slot, QObject
 
 import pyautogui
 import keyboard
 
-from bot_pkg import denseEssProcess
-from bot_pkg import pollivneachCourseFile
-from bot_pkg import basicFunctions
-from bot_pkg import RunescapeGame
-from bot_pkg import bloods
-from bot_pkg import runecrafting
-from bot_pkg import seers
-from bot_pkg import cooker
-from bot_pkg import construction
-from bot_pkg import smithing
-from bot_pkg import wines
-from bot_pkg import ardouge
-from bot_pkg import woodcutter
+from bot_pkg import *
 
 
-class Bot_r(QObject):
+class Botr(QObject):
+    """Bot_r"""
     stopped = Signal(bool)
     start_dense = Signal(bool)
     stop_dense = Signal(bool)
     start_pollivneach = Signal(bool)
     stop_pollivneach = Signal(bool)
-
     send_info_ = Signal(list)
 
     def __init__(self, parent):
-        super(Bot_r, self).__init__()
+        super(Botr, self).__init__()
 
         self._timer_feedback = QTimer()
         self._timer_feedback.setInterval(100)
@@ -63,10 +53,16 @@ class Bot_r(QObject):
         self._waiting = False
         self._start_emited = False
 
+        # why was this variable not defined in init
+        # before RMG started working on the project?
+        self._key_stop = None
+
     def run(self):
+        """Run"""
         # global botActive, secondsMining, currentPhase, waiting
         # send to logger
-        # label_feedback.config(text="The bot has been activated!\nUse the - key to stop the bot.")
+        # label_feedback.config(text="The bot has been \
+        # activated!\nUse the - key to stop the bot.")
         self._bot_active = True
         self._key_stop = keyboard.add_hotkey('equal', self.disable_bot)
 
@@ -143,74 +139,80 @@ class Bot_r(QObject):
             self._woodcutter_start()
 
     def disable_bot(self):
+        """Resets variables"""
         # label_feedback.config(text="The bot has been disabled") send to log
         self._bot_active = False
         self._waiting = False
         self._setup = False
-        self._currentPhase = "Base"
+        self._current_phase = "Base"
 
     def send_info(self, value: list):
+        """Sends info"""
         self.send_info_.emit(value)
 
-    def update_values(self, bot_name: str, step: str, mining_seconds: int = 140):
+    def update_values(self,
+                      bot_name: str,
+                      step: str,
+                      mining_seconds: int = 140) -> None:
+        """Updates bot values"""
         self._bot_name = bot_name
         self._seconds_mining = mining_seconds
         self._step = step
 
     @Slot()
-    def _start_dense_timer(self):
+    def _start_dense_timer(self) -> None:
         self._timer_dense_ess_bot.start()
         self._start_emited = True
 
     @Slot()
-    def _stop_dense_timer(self):
+    def _stop_dense_timer(self) -> None:
         self._timer_dense_ess_bot.stop()
         self._start_emited = False
 
     @Slot()
-    def _start_pollivneach_timer(self):
+    def _start_pollivneach_timer(self) -> None:
         self._start_emited = True
         self._timer_pollivneach_bot.start()
 
     @Slot()
-    def _stop_pollivneach_timer(self):
+    def _stop_pollivneach_timer(self) -> None:
         self._timer_pollivneach_bot.stop()
         self._start_emited = False
 
-    def enable_feedback(self):
+    def enable_feedback(self) -> None:
         """Enable the print feedback"""
         self._feedback_active = True
         self._timer_feedback.start()
 
-    def disable_feedback(self):
+    def disable_feedback(self) -> None:
         """Disable print feedback"""
         self._feedback_active = False
 
     def _keyboard_controller(self):
         self._bot_active = False
 
-    def _print_feedback(self):
+    def _print_feedback(self) -> None:
         """Qtimer call function for mouse feedback """
         if self._feedback_active:
-            x, y = pyautogui.position()
+            _x, _y = pyautogui.position()
             # x += 95
             # y += 41
             color = pyautogui.screenshot()
-            color = color.getpixel((x, y))
-            ss = 'X: ' + str(x).rjust(4) + ' Y: ' + str(y).rjust(4)
-            ss += ' RGB: (' + str(color[0]).rjust(3)
-            ss += ', ' + str(color[1]).rjust(3)
-            ss += ', ' + str(color[2]).rjust(3) + ')'
+            color = color.getpixel((_x, _y))
+            _ss = 'X: ' + str(_x).rjust(4) + ' Y: ' + str(_y).rjust(4)
+            _ss += ' RGB: (' + str(color[0]).rjust(3)
+            _ss += ', ' + str(color[1]).rjust(3)
+            _ss += ', ' + str(color[2]).rjust(3) + ')'
 
             # label_mouse_info.config(text=ss);
             # probably send to log
         if not self._feedback_active:
             self._timer_feedback.stop()
 
-    def _close_thread(self):
+    def _close_thread(self) -> None:
         self.stopped.emit(True)
 
-    def _dense_ess_start(self):
+    def _dense_ess_start(self) -> None:
         """Dense ess bot handle"""
         reset_timer = denseEssProcess(
             self._current_phase, self._waiting, self._seconds_mining, self)
@@ -222,7 +224,7 @@ class Bot_r(QObject):
             self.stop_dense.emit(True)
             self._close_thread()
 
-    def _pollivneach_start(self):
+    def _pollivneach_start(self) -> None:
         """Pollivneach bot handle"""
         reset_timer = pollivneachCourseFile.pollinveachCourse(
             self._current_phase, self)
@@ -235,7 +237,7 @@ class Bot_r(QObject):
             self.stop_pollivneach.emit(True)
             self._close_thread()
 
-    def _hunting_start(self):
+    def _hunting_start(self) -> None:
         """Hunting bot handle"""
         if self._bot_active:
             RunescapeGame.start(self._setup, self)
@@ -245,7 +247,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _bloods_start(self):
+    def _bloods_start(self) -> None:
         """Blood bot handle"""
         if self._bot_active:
             bloods.run(self)
@@ -253,7 +255,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _runecrafting_start(self):
+    def _runecrafting_start(self) -> None:
         """Runecrafting bot handle"""
         print('trying renecraft bot')
         if self._bot_active:
@@ -262,7 +264,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _seers_start(self):
+    def _seers_start(self) -> None:
         """Seers bot handle"""
         if self._bot_active:
             seers.run()
@@ -270,7 +272,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _cooker_start(self):
+    def _cooker_start(self) -> None:
         """Cooker bot handle"""
         if self._bot_active:
             cooker.run(self._setup)
@@ -280,7 +282,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _construction_start(self):
+    def _construction_start(self) -> None:
         """Construction bot handle"""
         if self._bot_active:
             construction.run()
@@ -288,7 +290,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _smithing_start(self):
+    def _smithing_start(self) -> None:
         """Smithing bot handle"""
         if self._bot_active:
             smithing.run()
@@ -296,7 +298,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _wines_start(self):
+    def _wines_start(self) -> None:
         """Wine bot handle"""
         if self._bot_active:
             wines.run()
@@ -304,7 +306,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _ardouge_start(self):
+    def _ardouge_start(self) -> None:
         """Ardouge bot handle"""
         if self._bot_active:
             ardouge.run()
@@ -312,7 +314,7 @@ class Bot_r(QObject):
         else:
             self._close_thread()
 
-    def _woodcutter_start(self):
+    def _woodcutter_start(self) -> None:
         """Woodcutter bot handle"""
         if self._bot_active:
             woodcutter.run()

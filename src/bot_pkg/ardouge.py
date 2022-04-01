@@ -1,11 +1,11 @@
 import pyautogui
 from .robot import Robot
 from time import sleep
-from path_config import ardouge_assets
+from path_config import ARDOUGE_ASSETS
 
 
 def run():
-    ardy = Robot(__file__, ardouge_assets)
+    ardy = Robot(__file__, ARDOUGE_ASSETS)
     ardy.setup_bot()
 
     sleep(2)

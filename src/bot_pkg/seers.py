@@ -1,9 +1,9 @@
 from .robot import Robot
-from path_config import seers_assets
+from path_config import SEERS_ASSETS
 
 
 def run():
-    seers_robot = Robot(__file__, seers_assets)
+    seers_robot = Robot(__file__, SEERS_ASSETS)
     seers_robot.setup_bot()
 
     seers_robot.run_clicks(["home", "first", "second", "third"])

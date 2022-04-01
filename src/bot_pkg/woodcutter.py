@@ -1,6 +1,6 @@
 from .robot import Robot
 from time import sleep
-from path_config import woodcutter_assets
+from path_config import WOODCUTTER_ASSETS
 
 
 def run():

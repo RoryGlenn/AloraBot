@@ -1,7 +1,7 @@
+
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QToolButton
 from PySide6.QtCore import Qt, QSize, QMargins, Slot
 from PySide6.QtGui import QWindow
-
 import utils
 from style import stylesheet
 

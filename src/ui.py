@@ -1,3 +1,5 @@
+"""ui.py - ui....."""
+
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QStackedWidget, QVBoxLayout
 from PySide6.QtCore import QSize, Qt, QMargins
 from PySide6.QtGui import QIcon
@@ -8,7 +10,10 @@ import components
 
 
 class UiApp(object):
+    """Functionality for the GUI"""
+
     def init_gui(self, app: App):
+        """Initializes the passed in object"""
         app.setWindowTitle('Runescape Bot')
         app.setWindowIcon(QIcon('src/resources/images/logo.ico'))
         app.setObjectName('main_app')

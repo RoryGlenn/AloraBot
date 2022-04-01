@@ -2,13 +2,13 @@ import pyautogui
 
 from .robot import Robot
 from time import sleep
-from path_config import bloods_assets
+from path_config import BLOODS_ASSETS
 
 
 def run(logger):
     log_handle = logger
     loops = 0
-    rune_robot = Robot(__file__, bloods_assets)
+    rune_robot = Robot(__file__, BLOODS_ASSETS)
     rune_robot.setup_bot()
     sleep(3)
 

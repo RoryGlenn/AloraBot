@@ -1,11 +1,8 @@
 from . import basicFunctions
-import tkinter
-import PIL
 import pyautogui
 from tkinter import *
 import random
 import keyboard
-from pynput.mouse import Button, Controller
 
 currentPhase = "Base"
 markOfGrace = False

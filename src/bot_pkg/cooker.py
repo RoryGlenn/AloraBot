@@ -1,7 +1,7 @@
 from time import sleep
 from .robot import Robot
 from pyautogui import click
-from path_config import cooker_assets
+from path_config import COOKER_ASSETS
 
 robot = None
 
@@ -9,7 +9,7 @@ def run(setup):
     global robot
     
     if not setup:
-        robot = Robot(__file__, cooker_assets)
+        robot = Robot(__file__, COOKER_ASSETS)
         robot.setup_bot()
 
         sleep(3)

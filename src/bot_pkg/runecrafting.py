@@ -1,5 +1,5 @@
 from .robot import Robot
-from path_config import runecrafting_assets
+from path_config import RUNECRAFTING_ASSETS
 
 
 def custom_setup(robot):
@@ -8,7 +8,7 @@ def custom_setup(robot):
 
 
 def run():
-    rune_robot = Robot(__file__, runecrafting_assets)
+    rune_robot = Robot(__file__, RUNECRAFTING_ASSETS)
     rune_robot.setup_bot(custom_setup)
 
     rune_robot.type_thieve()
