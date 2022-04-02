@@ -1,18 +1,16 @@
 """ardouge.py - ..."""
 
-import pyautogui
-from .robot import Robot
 from time import sleep
+import pyautogui
 from path_config import ARDOUGE_ASSETS
+from .robot import Robot
 
 
 def run():
+    """run ..."""
     ardy = Robot(__file__, ARDOUGE_ASSETS)
     ardy.setup_bot()
-
-    sleep(2)
-
-    sleep(0.5)
+    sleep(2.5)
     ardy.click("compass")
     pyautogui.keyDown("up")
     sleep(0.5)

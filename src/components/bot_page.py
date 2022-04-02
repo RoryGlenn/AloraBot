@@ -1,7 +1,7 @@
 """bot_page.py - ..."""
 
-from functools import partial
 # import keyboard
+from functools import partial
 from thread import Worker
 
 from PySide6.QtWidgets import (
@@ -37,7 +37,7 @@ class BotPage(QFrame):
         #
         # self._key_stop = QShortcut(QKeySequence('2'), self)
         # self._key_stop.activated.connect(self._keyboard_controller)
-        
+
         # HOTKEYS TO START BOT
         # self._key_start = keyboard.add_hotkey(
         #     'underscore', self._keyboard_controller)
@@ -111,10 +111,13 @@ class BotPage(QFrame):
 
         self._mouse_info_enabled = False
 
-        self._steps_list = {'Dense Ess': ["Find Wizard", "Fast Travel",
-                                          "Climb Rock", "Walk to Runestone", "Mine", "Teleport Home",
-                                          "Bank Deposit"], 'Pollivneach': ["Base", "Barrel"],
-                            'Donator Zone': ["Set Traps"]}
+        self._steps_list = {'Dense Ess': [
+            "Find Wizard", "Fast Travel", "Climb Rock", "Walk to Runestone",
+            "Mine", "Teleport Home", "Bank Deposit"],
+            'Pollivneach': [
+                "Base", "Barrel"],
+            'Donator Zone': [
+                "Set Traps"]}
 
         self._mining_seconds_popup = AlertPopup(
             self.parent, 'Fill in', 'Seconds spend on mining')
@@ -262,8 +265,7 @@ class CustomStartButton(QPushButton):
 
 
 class BotPopUp(QFrame):
-    """Custom popup for the more menu button.
-    """
+    """Custom popup for the more menu button"""
 
     send_info = Signal(str)
 

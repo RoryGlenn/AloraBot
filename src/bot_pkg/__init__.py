@@ -1,6 +1,6 @@
 from .denseEssFile import denseEssProcess
 from . import pollivneachCourseFile
-from . import basicFunctions
+from . import basic_functions
 from . import RunescapeGame
 from . import bloods
 from . import runecrafting

@@ -17,7 +17,6 @@ def load_svg(path: str, size: QSize) -> QPixmap:
     painter.end()
     return new_image
 
-
 def set_font(target: QObject,
              size: int,
              italic: bool = False,

@@ -1,4 +1,4 @@
-"""bot_r.py - does bot stuff?"""
+"""bot_r.py - ..."""
 
 from PySide6.QtCore import QTimer, Signal, Slot, QObject
 
@@ -96,7 +96,7 @@ class Botr(QObject):
                 self._current_phase = "Bank"
                 self._waiting = False
 
-            basicFunctions.downOrient()
+            basic_functions.down_orient()
             self._dense_ess_start()
 
         elif self._bot_name == "Pollivneach":
@@ -104,8 +104,8 @@ class Botr(QObject):
                 self._current_phase = 'Base'
             elif self._step == 'Barrel':
                 self._current_phase = 'Barrel'
-            basicFunctions.downOrient()
-            basicFunctions.upOrient()
+            basic_functions.down_orient()
+            basic_functions.up_orient()
             self._pollivneach_start()
 
         elif self._bot_name == "Donator Zone":

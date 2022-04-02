@@ -1,4 +1,4 @@
-"""ui.py - ui....."""
+"""ui.py - ..."""
 
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QStackedWidget, QVBoxLayout
 from PySide6.QtCore import QSize, Qt, QMargins

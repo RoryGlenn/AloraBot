@@ -8,8 +8,8 @@ import pyautogui
 from path_config import RES_1366
 from pynput.mouse import Controller
 
-from . import basicFunctions
-from .basicFunctions import checkDefault, grabColor
+from . import basic_functions
+from .basic_functions import check_default, grab_color
 
 mouse = Controller()
 
@@ -33,7 +33,7 @@ def endProcess():
     currentPhase = "Teleport Home"
     waiting = False
     defaultAttempts = 0
-    basicFunctions.downOrient()
+    basic_functions.down_orient()
 
 
 def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
@@ -50,13 +50,13 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
     # waiting = waiting_
     reset_timer = 25
 
-    basicFunctions.finishOrient()
+    basic_functions.finish_orient()
 
     if currentPhase == "Base":
         if not waiting and defaultAttempts < 40:
             # Check in the "expected" spot for ease of access, then process for methodical checking
             log_handle.send_info(['Looking for mage', 'success'])
-            if basicFunctions.checkDefault("Mage"):
+            if basic_functions.check_default("Mage"):
                 print("Mage found!")
                 log_handle.send_info(['Mage found', 'success'])
                 pyautogui.click()
@@ -73,7 +73,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                         ['Desperately looking for mage', 'error'])
 
         elif not waiting and 39 < defaultAttempts < 70:
-            if basicFunctions.checkDefault("Mage"):
+            if basic_functions.check_default("Mage"):
                 log_handle.send_info(['Mage found', 'success'])
                 pyautogui.click()
                 waiting = True
@@ -99,7 +99,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                     log_handle.send_info(['Warning!', 'error'])
                     currentPhase = "RockHop"
                     reset_timer = 4000
-                    basicFunctions.downOrient()
+                    basic_functions.down_orient()
                     waiting = False
                 else:
                     endProcess()
@@ -112,8 +112,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
         if not waiting and defaultAttempts < 21:
             print("Looking for small rock")
             log_handle.send_info(['Looking for small rock', 'success'])
-            waitColor = grabColor()
-            if basicFunctions.checkDefault("Small Rock"):
+            waitColor = grab_color()
+            if basic_functions.check_default("Small Rock"):
                 print("Small rock found!")
                 log_handle.send_info(['Small rock found', 'success'])
                 pyautogui.click()
@@ -127,7 +127,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
             print("Desperately looking for small rock")
             log_handle.send_info(
                 ['Desperately looking for small rock', 'error'])
-            if checkDefault("Small Rock"):
+            if check_default("Small Rock"):
                 print("Small rock found!")
                 log_handle.send_info(['Small rock found', 'success'])
                 pyautogui.click()
@@ -149,11 +149,11 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
             print("Waiting..." + str(defaultAttempts))
             log_handle.send_info(
                 ["Waiting..." + str(defaultAttempts), 'error'])
-            if grabColor() == waitColor:
+            if grab_color() == waitColor:
                 defaultAttempts += 1
             else:
                 defaultAttempts = 0
-                waitColor = grabColor()
+                waitColor = grab_color()
             if defaultAttempts > 10:
                 defaultAttempts = 0
                 currentPhase = "MinesMap"
@@ -163,7 +163,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
 
     elif currentPhase == "MinesMap":
         if not waiting:
-            waitColor = grabColor()
+            waitColor = grab_color()
             pyautogui.moveTo(1014, 149)
             pyautogui.click()
             waiting = True
@@ -172,14 +172,14 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
             print("Waiting..." + str(defaultAttempts))
             log_handle.send_info(
                 ["Waiting..." + str(defaultAttempts), 'error'])
-            if grabColor() == waitColor:
+            if grab_color() == waitColor:
                 defaultAttempts += 1
             else:
                 defaultAttempts = 0
-                waitColor = grabColor()
+                waitColor = grab_color()
             if defaultAttempts > 10:
                 currentPhase = "Large Rock"
-                basicFunctions.downOrient()
+                basic_functions.down_orient()
                 waiting = False
                 defaultAttempts = 0
                 print("Clicking on rock :)")
@@ -187,7 +187,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
 
     elif currentPhase == "Large Rock":
 
-        if checkDefault("Large Rock") and defaultAttempts < 30:
+        if check_default("Large Rock") and defaultAttempts < 30:
             print("Mining")
             log_handle.send_info(['Mining', 'success'])
             pyautogui.click()
@@ -196,7 +196,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
             reset_timer = (1000 * int(secondsMining))
 
         elif 29 < defaultAttempts < 50:
-            if checkDefault("Large Rock"):
+            if check_default("Large Rock"):
                 print("Mining")
                 log_handle.send_info(['Mining', 'success'])
                 pyautogui.click()
@@ -219,7 +219,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                     ["Desperately looking for large rock", 'error'])
 
     elif currentPhase == "Teleport Home":
-        basicFunctions.downOrient()
+        basic_functions.down_orient()
         print("Teleporting Home...")
         log_handle.send_info(["Teleporting Home", 'success'])
         keyboard.write(";;home")
@@ -229,7 +229,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
 
     elif currentPhase == "Bank":
         if not waiting:
-            if checkDefault("Bank") and defaultAttempts < 30:
+            if check_default("Bank") and defaultAttempts < 30:
                 pyautogui.click()
                 waiting = True
                 defaultAttempts = 0
@@ -237,7 +237,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                 log_handle.send_info(["Walking to bank...", 'success'])
 
             elif 30 < defaultAttempts < 60:
-                if checkDefault("Bank"):
+                if check_default("Bank"):
                     pyautogui.click()
                     waiting = True
                     defaultAttempts = 0
@@ -279,7 +279,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
             pyautogui.click()
             waiting = False
             currentPhase = "Base"
-            basicFunctions.downOrient()
+            basic_functions.down_orient()
             defaultAttempts = 0
 
     return reset_timer

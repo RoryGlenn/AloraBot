@@ -43,14 +43,11 @@ class TitleBar(QFrame):
             self._container.layout().addWidget(btn)
 
     def set_window_handle(self, window: QWindow) -> None:
-        """Set the window obj for the startsystemmove
-        """
+        """Set the window obj for the startsystemmove"""
         self.window_handle = window
 
     def mouseMoveEvent(self, event) -> None:
-        """Handle the window move event if not 
-        support the startsystemmove
-        """
+        """Handle the window move event if not support the startsystemmove"""
         if not self.support_system_move:
             app = utils.find_parent(obj=self, target='main_app')
             if app != None:
@@ -62,8 +59,7 @@ class TitleBar(QFrame):
         return super().mousePressEvent(event)
 
     def mousePressEvent(self, event) -> None:
-        """Move window function using mouse press event
-        """
+        """Move window function using mouse press event"""
         if self.window_handle != None:
             self.support_system_move = True if self.window_handle.startSystemMove() else False
         return super().mousePressEvent(event)
