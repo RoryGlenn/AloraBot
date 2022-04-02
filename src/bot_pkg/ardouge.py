@@ -1,3 +1,5 @@
+"""ardouge.py - ..."""
+
 import pyautogui
 from .robot import Robot
 from time import sleep

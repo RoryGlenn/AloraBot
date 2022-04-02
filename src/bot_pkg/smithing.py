@@ -1,3 +1,5 @@
+"""smithing.py - ..."""
+
 from time import sleep
 
 import pyautogui

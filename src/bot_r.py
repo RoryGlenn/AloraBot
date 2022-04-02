@@ -9,7 +9,7 @@ from bot_pkg import *
 
 
 class Botr(QObject):
-    """Bot_r"""
+    """Botr"""
     stopped = Signal(bool)
     start_dense = Signal(bool)
     stop_dense = Signal(bool)

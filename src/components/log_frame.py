@@ -1,3 +1,5 @@
+"""log_frame.py - ..."""
+
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QScrollArea
 from PySide6.QtCore import Qt, QMargins, Slot, QTimer
 

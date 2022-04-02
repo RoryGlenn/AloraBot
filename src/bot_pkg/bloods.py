@@ -1,3 +1,5 @@
+"""bloods.py - ..."""
+
 import pyautogui
 
 from .robot import Robot

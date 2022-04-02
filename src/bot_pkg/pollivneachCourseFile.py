@@ -1,3 +1,5 @@
+"""pollivneachCourseFile.py - ..."""
+
 from . import basicFunctions
 import pyautogui
 from tkinter import *

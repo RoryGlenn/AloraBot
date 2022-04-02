@@ -1,13 +1,16 @@
+"""robot.py - ..."""
+
 import pyautogui
 import json
 from time import sleep
-from os import chdir, getcwd, path
+from os import chdir, path
 from glob import glob
 import pyautogui
 from path_config import CONFIG as config_path
 
 
 class Robot:
+    """Robot - """
     def __init__(self, bot_name, path_file):
         self.bot_path = path_file
         self.bot_name = path.splitext(path.basename(bot_name))[0]

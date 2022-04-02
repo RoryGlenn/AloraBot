@@ -1,3 +1,4 @@
+"""basicFunctions.py - Scans for pixel colors on screen"""
 
 import random
 
@@ -6,14 +7,20 @@ import pyautogui
 from pynput.mouse import Controller
 
 mouse = Controller()
+mage_rgb_check_count = 0
 
+class MageRGB:
+    RED = 15
+    GREEN = 15
+    BLUE = 15
+    
+    
 
 def grabColor():
     x, y = pyautogui.position()
     ss = pyautogui.screenshot()
     colorTest = ss.getpixel((x, y))
     return colorTest
-
 
 def moving(waitColor):
     if waitColor == grabColor():
@@ -27,22 +34,26 @@ def checkTooltip(object):
     x, y = pyautogui.position()
     color = pyautogui.screenshot()
     px_test = color.getpixel((x, y))
+    global mage_rgb_check_count
 
     # Dense Ess defaults
     if object == "Mage":
-        if px_test[1] > 15 or px_test[0] < 15 or px_test[2] < 15:
-            print("First test failed")
+        if px_test[1] > MageRGB.RED or px_test[0] < MageRGB.GREEN or px_test[2] < MageRGB.BLUE:
+            print(f"{mage_rgb_check_count}: Could not find Mage RGB values")
+            mage_rgb_check_count += 1
             return False
+
         # checking for yellow, mage tooltip (no blue)
         x += 56
         y += 33
-        for i in range(0, 5):
+        for _ in range(0, 5):
             px_test = color.getpixel((x, y))
             if px_test[0] == 255 and px_test[1] == 255 and px_test[2] == 0:
-                print("Test succeeded")
+                print("Found Mage tooltip")
                 return True
             x += 1
-        print("Second test failed")
+        
+        print("Could not find mage tool tip")
         return False
 
     elif object == "Small Rock":

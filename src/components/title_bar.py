@@ -1,3 +1,5 @@
+"""title_bar.py - ..."""
+
 
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QToolButton
 from PySide6.QtCore import Qt, QSize, QMargins, Slot

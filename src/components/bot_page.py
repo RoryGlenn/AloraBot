@@ -1,5 +1,7 @@
+"""bot_page.py - ..."""
+
 from functools import partial
-import keyboard
+# import keyboard
 from thread import Worker
 
 from PySide6.QtWidgets import (
@@ -35,10 +37,12 @@ class BotPage(QFrame):
         #
         # self._key_stop = QShortcut(QKeySequence('2'), self)
         # self._key_stop.activated.connect(self._keyboard_controller)
-        self._key_start = keyboard.add_hotkey(
-            'underscore', self._keyboard_controller)
-        self._key_stop = keyboard.add_hotkey(
-            'equal', self._keyboard_controller)
+        
+        # HOTKEYS TO START BOT
+        # self._key_start = keyboard.add_hotkey(
+        #     'underscore', self._keyboard_controller)
+        # self._key_stop = keyboard.add_hotkey(
+            # 'equal', self._keyboard_controller)
 
         self._btns_frame = QFrame()
         self._btns_frame.setLayout(QGridLayout())

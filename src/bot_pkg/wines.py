@@ -1,6 +1,8 @@
+"""wines.py - ..."""
+
 from time import sleep
 from .robot import Robot
-from pyautogui import click
+# from pyautogui import click
 from path_config import WINES_ASSETS
 
 

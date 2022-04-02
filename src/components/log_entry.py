@@ -1,6 +1,9 @@
+"""log_entry.py - ..."""
+
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QVBoxLayout, QLabel
 from PySide6.QtCore import Qt
-import utils
+
+from utils import set_font
 from style import stylesheet
 
 
@@ -40,7 +43,7 @@ class LogEntry(QFrame):
         self._info_container.layout().setContentsMargins(0, 0, 0, 0)
         self.layout().addWidget(self._info_container)
         self._info_label = QLabel()
-        utils.set_font(self._info_label, size=10)
+        set_font(self._info_label, size=10)
         self._info_label.setStyleSheet('color: #FFFFFF')
         self._info_container.layout().addWidget(
             self._info_label, alignment=Qt.AlignLeft)

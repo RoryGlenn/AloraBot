@@ -1,3 +1,5 @@
+"""denseEssFile.py - ..."""
+
 import os
 import random
 
@@ -8,23 +10,6 @@ from pynput.mouse import Controller
 
 from . import basicFunctions
 from .basicFunctions import checkDefault, grabColor
-
-# import tkinter
-# import PIL
-# from tkinter import *
-
-"""
-
-.. = go back one folder
-. = look at the folder we are currently in
-
-For example,
-cd .. will take you back one folder
-cd . will do nothing
-
-"""
-
-# print(f"res_1366: {res_1366}") # res_1366: C:\Users\justy\Desktop\alora 3.0\src\data\1366x768
 
 mouse = Controller()
 
@@ -70,7 +55,6 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
     if currentPhase == "Base":
         if not waiting and defaultAttempts < 40:
             # Check in the "expected" spot for ease of access, then process for methodical checking
-            # print("Looking for mage")
             log_handle.send_info(['Looking for mage', 'success'])
             if basicFunctions.checkDefault("Mage"):
                 print("Mage found!")
@@ -108,8 +92,8 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                 if defaultAttempts < 50:
                     location = pyautogui.locateOnScreen(locationPic)
                     locationPoint = pyautogui.center(location)
-                    pyautogui.moveTo(
-                        locationPoint.x + random.randint(-5, 5), locationPoint.y + random.randint(-5, 5))
+                    pyautogui.moveTo(locationPoint.x + random.randint(-5, 5), 
+                                     locationPoint.y + random.randint(-5, 5))
                     pyautogui.click()
                     print("Warping!")
                     log_handle.send_info(['Warning!', 'error'])
@@ -272,7 +256,6 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                     print("Desperately looking for bank")
                     log_handle.send_info(
                         ["Desperately looking for bank", 'error'])
-
         else:
             try:
                 location = pyautogui.locateOnScreen(bankExitPic)

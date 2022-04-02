@@ -1,3 +1,5 @@
+"""cooker.py - ..."""
+
 from time import sleep
 from .robot import Robot
 from pyautogui import click

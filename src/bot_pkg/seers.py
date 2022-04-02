@@ -1,3 +1,5 @@
+"""seers.py - ..."""
+
 from .robot import Robot
 from path_config import SEERS_ASSETS
 

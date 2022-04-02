@@ -1,3 +1,5 @@
+"""popup_alerts.py - ..."""
+
 from PySide6.QtWidgets import QFrame, QStyle, QLabel, QVBoxLayout, QGraphicsDropShadowEffect, QPushButton, QLineEdit
 from PySide6.QtCore import QSize, Qt, Slot, Signal, QRegularExpression
 from PySide6.QtGui import QGuiApplication, QColor, QRegularExpressionValidator
@@ -103,7 +105,12 @@ class AlertPopup(QFrame):
             ))
 
     @Slot()
-    def _close(self):
-        self.send_seconds.emit(int(self._entry.text()))
-        self._entry.setText('')
-        self.close()
+    def _close(self) -> None:
+        """Closes the popup alert"""
+            
+        if str(self._entry.text()).isdigit():
+            self.send_seconds.emit(int(self._entry.text()))
+            self._entry.setText('')
+            self.close()
+        else:
+            print(f"Invalid string '{self._entry.text()}'")

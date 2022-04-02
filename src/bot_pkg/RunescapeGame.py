@@ -1,3 +1,5 @@
+"""RunescapeGame.py - """
+
 from tkinter import *
 from pyautogui import *
 import pyautogui
