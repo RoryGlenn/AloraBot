@@ -53,6 +53,8 @@ class Botr(QObject):
         self._waiting = False
         self._start_emited = False
 
+        self.orient = basic_functions.Orient()
+
         # why was this variable not defined in init
         # before RMG started working on the project?
         self._key_stop = None
@@ -96,7 +98,8 @@ class Botr(QObject):
                 self._current_phase = "Bank"
                 self._waiting = False
 
-            basic_functions.down_orient()
+            # basic_functions.down_orient()
+            self.orient.down_orient()
             self._dense_ess_start()
 
         elif self._bot_name == "Pollivneach":
@@ -104,8 +107,11 @@ class Botr(QObject):
                 self._current_phase = 'Base'
             elif self._step == 'Barrel':
                 self._current_phase = 'Barrel'
-            basic_functions.down_orient()
-            basic_functions.up_orient()
+                
+            # basic_functions.down_orient()
+            # basic_functions.up_orient()
+            self.orient.down_orient()
+            self.orient.up_orient()
             self._pollivneach_start()
 
         elif self._bot_name == "Donator Zone":

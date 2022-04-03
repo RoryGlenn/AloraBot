@@ -64,7 +64,7 @@ class DefaultMouseMove:
     def __init__(self) -> None:
         self.__mark_of_grace = False
 
-        self.obj_func_lookup = {
+        self.__obj_func_lookup = {
             ObjName.MAGE: self.mage,
             ObjName.ROCK_SMALL: self.rock_small,
             ObjName.ROCK_LARGE: self.rock_large,
@@ -82,7 +82,7 @@ class DefaultMouseMove:
             ObjName.DRYING_LINE: self.drying_line
         }
 
-        self.default_lookup = {
+        self.__default_lookup = {
             ObjName.MAGE: self.check_mage,
             ObjName.ROCK_SMALL: self.check_rock_small,
             ObjName.ROCK_LARGE: self.check_rock_large,
@@ -103,14 +103,14 @@ class DefaultMouseMove:
 
     #### DEFAULTS ###
     def check_default_lookup(self, obj_name: str) -> bool:
-        return self.default_lookup.get(obj_name)()
+        return self.__default_lookup.get(obj_name)()
 
     def check_obj(self, obj_name: str) -> bool:
         """Checks tool tip"""
         _x, _y = pyautogui.position()
         color = pyautogui.screenshot()
-        px_test = color.getpixel(_x, _y)
-        return self.obj_func_lookup.get(obj_name)(_x, _y, px_test, color)
+        px_test = color.getpixel((_x, _y))
+        return self.__obj_func_lookup.get(obj_name)(_x, _y, px_test, color)
 
     def check_mage(self) -> bool:
         pyautogui.moveTo(
@@ -203,7 +203,7 @@ class DefaultMouseMove:
         _x, _y = pyautogui.position()
         color = pyautogui.screenshot()
         px_test = color.getpixel(_x, _y)
-        return self.obj_func_lookup.get(obj_name)(_x, _y, px_test, color)
+        return self.__obj_func_lookup.get(obj_name)(_x, _y, px_test, color)
 
     def mage(self, _x: int, _y: int, px_test: str, color: Image) -> bool:
         if px_test[1] > RGBMage.RED or px_test[0] < RGBMage.GREEN or px_test[2] < RGBMage.BLUE:
