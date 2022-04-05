@@ -1,10 +1,7 @@
 """bot_r.py - ..."""
 
 from PySide6.QtCore import QTimer, Signal, Slot, QObject
-
 import pyautogui
-# import keyboard
-
 from bot_pkg import *
 
 
@@ -106,7 +103,7 @@ class Botr(QObject):
                 self._current_phase = 'Base'
             elif self._step == 'Barrel':
                 self._current_phase = 'Barrel'
-                
+
             self.orient.down_orient()
             self.orient.up_orient()
             self._pollivneach_start()
@@ -233,6 +230,7 @@ class Botr(QObject):
             self._current_phase, self)
         self._timer_pollivneach_bot.setInterval(reset_timer)
         self._timer_pollivneach_bot.timeout.connect(self._pollivneach_start)
+
         if self._bot_active:
             if not self._start_emited:
                 self.start_pollivneach.emit(True)

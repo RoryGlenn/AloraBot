@@ -6,7 +6,6 @@ import json
 from time import sleep
 from os import chdir, path
 from glob import glob
-import pyautogui
 from path_config import CONFIG as config_path
 
 
