@@ -10,7 +10,7 @@ import utils
 
 class LogFrame(QFrame):
 
-    def __init__(self):
+    def __init__(self) -> None:
         super(LogFrame, self).__init__()
         self.setStyleSheet(stylesheet.log_bg)
         self.setFixedWidth(400)
@@ -67,17 +67,17 @@ class LogFrame(QFrame):
         self._minutes = 0
         self._hours = 0
 
-    def insert_log(self, txt: str, type_: str):
+    def insert_log(self, txt: str, type_: str) -> None:
         aux = LogEntry(type_)
         log = txt.capitalize()
         aux.set_text(log)
         self._widget_wrapper.layout().insertWidget(0, aux)
         self._log_list.append(aux)
 
-    def update_skill_bot(self, value: list):
+    def update_skill_bot(self, value: list) -> None:
         self._skill_info.update_info(f'{value[0].capitalize()}\n{value[1]}')
 
-    def update_start(self, started):
+    def update_start(self, started) -> None:
         if started:
             self._status_info.update_info('started')
             self._timer.start()
@@ -88,7 +88,7 @@ class LogFrame(QFrame):
             self._time_info.update_info('00:00')
 
     @Slot()
-    def _update_time(self):
+    def _update_time(self) -> None:
         self._seconds += 1
         if self._seconds == 60:
             self._seconds = 0
@@ -114,7 +114,7 @@ class LogFrame(QFrame):
 
 class InfoWidget(QFrame):
 
-    def __init__(self, title):
+    def __init__(self, title) -> None:
         super(InfoWidget, self).__init__()
         self.setLayout(QVBoxLayout())
         self.layout().setSpacing(5)
@@ -149,7 +149,7 @@ class InfoWidget(QFrame):
 
         self.layout().addWidget(self._color_frame)
 
-    def update_info(self, text: str):
+    def update_info(self, text: str) -> None:
         # if self.title == 'status':
         #    if text == 'stopped':
         #        self._info.setStyleSheet(f"""background: {colorscheme.transparent};

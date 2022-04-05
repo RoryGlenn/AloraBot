@@ -7,7 +7,7 @@ from path_config import COOKER_ASSETS
 
 robot = None
 
-def run(setup):
+def run(setup) -> None:
     global robot
     
     if not setup:

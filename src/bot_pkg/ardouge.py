@@ -6,7 +6,7 @@ from path_config import ARDOUGE_ASSETS
 from .robot import Robot
 
 
-def run():
+def run() -> None:
     """run ..."""
     ardy = Robot(__file__, ARDOUGE_ASSETS)
     ardy.setup_bot()

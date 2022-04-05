@@ -14,7 +14,7 @@ waiting = False
 log_handle = None
 
 
-def endProcess():
+def endProcess() -> None:
     global currentPhase
     global waiting
     global defaultAttempts
@@ -25,7 +25,7 @@ def endProcess():
     basic_functions.up_orient()
 
 
-def pollinveachCourse(current_phase, logger):
+def pollinveachCourse(current_phase, logger) -> None:
     global markOfGrace
     global waiting
     global currentPhase

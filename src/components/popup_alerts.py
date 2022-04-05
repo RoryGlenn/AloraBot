@@ -13,7 +13,7 @@ class AlertPopup(QFrame):
 
     send_seconds = Signal(int)
 
-    def __init__(self, parent, title, info):
+    def __init__(self, parent, title, info) -> None:
         super(AlertPopup, self).__init__(parent=parent)
 
         self.setObjectName('alert_dialog')

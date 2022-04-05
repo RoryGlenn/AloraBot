@@ -9,14 +9,14 @@ from path_config import CONSTRUCTION_ASSETS
 
 SLEEP_TIME = 0.5
 
-def run():
+def run() -> None:
     loops = 0  # You initialize loops to 0 right here and don't do the global thing
     robot = Robot(__file__, CONSTRUCTION_ASSETS)
     robot.setup_bot()
 
     sleep(SLEEP_TIME + 1.5)
 
-    def do_bank_stuff(robot):
+    def do_bank_stuff(robot) -> None:
         robot.click("planks")
         sleep(SLEEP_TIME)
         robot.click("butler")

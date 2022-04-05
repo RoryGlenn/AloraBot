@@ -8,7 +8,7 @@ from .robot import Robot
 from path_config import SMITHING_ASSETS
 
 
-def run():
+def run() -> None:
     robot = Robot(__file__, SMITHING_ASSETS)
     robot.setup_bot()
 

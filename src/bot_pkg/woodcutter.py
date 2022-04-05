@@ -1,11 +1,9 @@
 """woodcutter.py - ..."""
 
 from .robot import Robot
-# from time import sleep
-# from path_config import WOODCUTTER_ASSETS
 
 
-def run():
+def run() -> None:
     wc = Robot(__file__)
     wc.setup_bot()
 

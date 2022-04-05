@@ -1,5 +1,6 @@
 """robot.py - ..."""
 
+from typing import Any
 import pyautogui
 import json
 from time import sleep
@@ -11,28 +12,28 @@ from path_config import CONFIG as config_path
 
 class Robot:
     """Robot - """
-    def __init__(self, bot_name, path_file):
+    def __init__(self, bot_name, path_file) -> None:
         self.bot_path = path_file
         self.bot_name = path.splitext(path.basename(bot_name))[0]
 
-    def move_and_click(self, coords, numClicks, mouse_btn="left"):
+    def move_and_click(self, coords, numClicks, mouse_btn="left") -> None:
         pyautogui.moveTo(coords[0], coords[1], 0.15, pyautogui.easeInOutQuad)
         pyautogui.click(clicks=numClicks, interval=0.05, button=mouse_btn)
 
-    def load_asset_images(self, name):
+    def load_asset_images(self, name) -> list:
         return [img for img in glob(name + '*.png')]
 
-    def load_config(self):
+    def load_config(self) -> Any:
         with open(config_path) as config:
             return json.load(config)[self.bot_name]
 
-    def wait(self, asset):
+    def wait(self, asset) -> None:
         sleep_timers = self.load_config()["sleep_timers"]
 
         if asset in sleep_timers:
             sleep(sleep_timers[asset])
 
-    def click(self, asset, numClicks=1, mouse_btn="left"):
+    def click(self, asset, numClicks=1, mouse_btn="left") -> None:
         print("Clicking " + asset + "...")
 
         images = self.load_asset_images(asset)
@@ -58,27 +59,27 @@ class Robot:
         self.move_and_click(coords, numClicks, mouse_btn)
         self.wait(asset)
 
-    def setup_bot(self, custom_setup=False):
+    def setup_bot(self, custom_setup=False) -> None:
         print("Starting bot...")
         chdir(self.bot_path)
 
         if custom_setup:
             custom_setup(self)
 
-    def type(self, text):
+    def type(self, text) -> None:
         sleep(0.1)
         pyautogui.typewrite(text)
 
-    def press_key(self, key):
+    def press_key(self, key) -> None:
         pyautogui.press(key)
 
-    def type_thieve(self):
+    def type_thieve(self) -> None:
         sleep(0.1)
         pyautogui.typewrite(';;thieve')
         pyautogui.press('enter')
         sleep(2.5)
 
-    def check_asset(self, asset, times=1):
+    def check_asset(self, asset, times=1) -> None:
         if not asset == 'continue':
             self.check_asset('continue')
 
@@ -98,6 +99,6 @@ class Robot:
 
         return False
 
-    def run_clicks(self, assets):
+    def run_clicks(self, assets) -> None:
         for asset in assets:
             self.click(asset)

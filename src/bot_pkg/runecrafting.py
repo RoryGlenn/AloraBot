@@ -5,12 +5,12 @@ from .robot import Robot
 from path_config import RUNECRAFTING_ASSETS
 
 
-def custom_setup(robot):
+def custom_setup(robot) -> None:
     robot.click('configbtn', 2)
     robot.click('itemsbtn')
 
 
-def run():
+def run() -> None:
     rune_robot = Robot(__file__, RUNECRAFTING_ASSETS)
     rune_robot.setup_bot(custom_setup)
 

@@ -12,7 +12,7 @@ import components
 class UiApp(object):
     """Functionality for the GUI"""
 
-    def init_gui(self, app: App):
+    def init_gui(self, app: App)  -> None:
         """Initializes the passed in object"""
         app.setWindowTitle('Runescape Bot')
         app.setWindowIcon(QIcon('src/resources/images/logo.ico'))

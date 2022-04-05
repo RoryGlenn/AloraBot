@@ -7,7 +7,7 @@ import pyautogui
 from path_config import POLLIVNEACH_ASSETS
 
 
-def run():
+def run() -> None:
     polli_bot = Robot(__file__, POLLIVNEACH_ASSETS)
     polli_bot.setup_bot()
 

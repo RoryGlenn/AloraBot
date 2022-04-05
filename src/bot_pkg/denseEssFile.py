@@ -8,9 +8,8 @@ import pyautogui
 from path_config import RES_1366
 from pynput.mouse import Controller
 
-# from . import basic_functions
-# from .basic_functions import check_default, grab_color
 from .basic_functions import DefaultMouseMove, Orient, ObjName
+
 
 DMM = DefaultMouseMove()
 ORIENT = Orient()
@@ -30,7 +29,7 @@ defaultAttempts = 0
 waiting = False
 
 
-def endProcess():
+def endProcess() -> None:
     global currentPhase
     global waiting
     global defaultAttempts
@@ -39,9 +38,10 @@ def endProcess():
     defaultAttempts = 0
     # basic_functions.down_orient()
     ORIENT.down_orient()
+    
 
 
-def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
+def denseEssProcess(current_phase, waiting_, seconds_mining, logger) -> None:
     global waiting
     global currentPhase
     global wait_color
@@ -112,7 +112,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                     waiting = False
                 else:
                     endProcess()
-            except:
+            except Exception as exception:
                 log_handle.send_info(['Looking for fast travel', 'success'])
                 print("Looking for fast travel")
                 defaultAttempts += 1
@@ -227,7 +227,6 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
 
         elif defaultAttempts > 49:
             endProcess()
-
         else:
             defaultAttempts += 1
             if defaultAttempts > 29:
@@ -288,7 +287,7 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
                 currentPhase = "Deposit"
                 waiting = False
                 reset_timer = 3000
-            except:
+            except Exception as exception:
                 print("Looking for deposit picture...")
                 log_handle.send_info(
                     ["Looking for deposit picture...", 'error'])
@@ -304,5 +303,4 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger):
             # basic_functions.down_orient()
             ORIENT.down_orient()
             defaultAttempts = 0
-
     return reset_timer

@@ -7,7 +7,7 @@ from time import sleep
 from path_config import BLOODS_ASSETS
 
 
-def run(logger):
+def run(logger) -> None:
     log_handle = logger
     loops = 0
     rune_robot = Robot(__file__, BLOODS_ASSETS)

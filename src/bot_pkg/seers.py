@@ -4,7 +4,7 @@ from .robot import Robot
 from path_config import SEERS_ASSETS
 
 
-def run():
+def run() -> None:
     seers_robot = Robot(__file__, SEERS_ASSETS)
     seers_robot.setup_bot()
 

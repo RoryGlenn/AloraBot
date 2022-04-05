@@ -3,7 +3,7 @@
 from PySide6.QtCore import QTimer, Signal, Slot, QObject
 
 import pyautogui
-import keyboard
+# import keyboard
 
 from bot_pkg import *
 
@@ -17,7 +17,7 @@ class Botr(QObject):
     stop_pollivneach = Signal(bool)
     send_info_ = Signal(list)
 
-    def __init__(self, parent):
+    def __init__(self, parent) -> None:
         super(Botr, self).__init__()
 
         self._timer_feedback = QTimer()
@@ -59,14 +59,14 @@ class Botr(QObject):
         # before RMG started working on the project?
         self._key_stop = None
 
-    def run(self):
+    def run(self) -> None:
         """Run"""
         # global botActive, secondsMining, currentPhase, waiting
         # send to logger
         # label_feedback.config(text="The bot has been \
         # activated!\nUse the - key to stop the bot.")
         self._bot_active = True
-        self._key_stop = keyboard.add_hotkey('equal', self.disable_bot)
+        # self._key_stop = keyboard.add_hotkey('equal', self.disable_bot)
 
         # bot config
         if self._bot_name == "Dense Ess":
@@ -98,7 +98,6 @@ class Botr(QObject):
                 self._current_phase = "Bank"
                 self._waiting = False
 
-            # basic_functions.down_orient()
             self.orient.down_orient()
             self._dense_ess_start()
 
@@ -108,8 +107,6 @@ class Botr(QObject):
             elif self._step == 'Barrel':
                 self._current_phase = 'Barrel'
                 
-            # basic_functions.down_orient()
-            # basic_functions.up_orient()
             self.orient.down_orient()
             self.orient.up_orient()
             self._pollivneach_start()
@@ -144,7 +141,7 @@ class Botr(QObject):
         elif self._bot_name == "Woodcutter":
             self._woodcutter_start()
 
-    def disable_bot(self):
+    def disable_bot(self) -> None:
         """Resets variables"""
         # label_feedback.config(text="The bot has been disabled") send to log
         self._bot_active = False
@@ -152,7 +149,7 @@ class Botr(QObject):
         self._setup = False
         self._current_phase = "Base"
 
-    def send_info(self, value: list):
+    def send_info(self, value: list) -> None:
         """Sends info"""
         self.send_info_.emit(value)
 
@@ -194,7 +191,7 @@ class Botr(QObject):
         """Disable print feedback"""
         self._feedback_active = False
 
-    def _keyboard_controller(self):
+    def _keyboard_controller(self) -> None:
         self._bot_active = False
 
     def _print_feedback(self) -> None:

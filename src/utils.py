@@ -40,7 +40,7 @@ def set_font(target: QObject,
         target.setFont(font)
 
 
-def find_parent(obj: QObject, target: str):
+def find_parent(obj: QObject, target: str) -> None:
     """Find the target parent of a children qobject"""
     # parent = obj.parent()
 

@@ -1,6 +1,5 @@
 """bot_page.py - ..."""
 
-# import keyboard
 from functools import partial
 from thread import Worker
 
@@ -17,7 +16,7 @@ from .popup_alerts import AlertPopup
 
 
 class BotPage(QFrame):
-    def __init__(self, parent, bot_handle):
+    def __init__(self, parent, bot_handle) -> None:
         super(BotPage, self).__init__()
         self.parent = parent
         self.setStyleSheet(stylesheet.transparent)
@@ -125,13 +124,13 @@ class BotPage(QFrame):
         self._seconds_mining = None
 
     @Slot()
-    def _insert_log(self, values: list):
+    def _insert_log(self, values: list) -> None:
         msg = values[0]
         type_ = values[1]
         self._bot_handle.insert_log(msg, type_)
 
     @Slot()
-    def _start_btn_handle(self):
+    def _start_btn_handle(self) -> None:
         if self._start_btn.started:
             self._worker.update_values(bot_name=self._bot_name, step=self._step_combo.currentText(),
                                        mining_seconds=self._seconds_mining)
@@ -141,12 +140,12 @@ class BotPage(QFrame):
         else:
             self._worker.disable_bot()
 
-    def _keyboard_controller(self):
+    def _keyboard_controller(self) -> None:
         self._start_btn.mousePressEvent()
         self._start_btn.click()
 
     @Slot()
-    def _update_pos_spawn(self, object_name: str):
+    def _update_pos_spawn(self, object_name: str) -> None:
         for btn in [self._mining_btn, self._runecrafting_btn, self._hunter_btn, self._agility_btn,
                     self._cooking_btn, self._construction_btn, self._smithing_btn, self._woodycutting_btn]:
             if object_name == btn.objectName():
@@ -156,11 +155,11 @@ class BotPage(QFrame):
         sender.update_popup(pos_spawn)
 
     @Slot()
-    def _seconds_receiver(self, value: int):
+    def _seconds_receiver(self, value: int) -> None:
         self._seconds_mining = value
 
     @Slot()
-    def _info_receiver(self, data_list):
+    def _info_receiver(self, data_list) -> None:
         self._bot_handle.update_skill_bot(data_list)
         for k, v in self._steps_list.items():
             self._clean_step_combo()
@@ -172,7 +171,7 @@ class BotPage(QFrame):
             self._mining_seconds_popup.show()
 
     @Slot()
-    def _mouse_info_handle(self):
+    def _mouse_info_handle(self) -> None:
         if self._mouse_info_enabled:
             self._mouse_info_enabled = False
             self._start_mouse_info.setText('start mouse info'.capitalize())
@@ -184,12 +183,12 @@ class BotPage(QFrame):
             # start feedback
             self._worker.enable_feedback()
 
-    def _clean_step_combo(self):
+    def _clean_step_combo(self) -> None:
         while (self._step_combo.count() != 0):
             self._step_combo.removeItem(0)
 
     @Slot()
-    def _worker_stopped_handle(self):
+    def _worker_stopped_handle(self) -> None:
         self._start_btn.set_start()
         self._bot_handle.update_start(False)
         self._insert_log(['Bot stopped', 'success'])
@@ -198,7 +197,7 @@ class BotPage(QFrame):
 class CustomSkillButton(QToolButton):
     send_info = Signal(list)
 
-    def __init__(self, title):
+    def __init__(self, title) -> None:
         super(CustomSkillButton, self).__init__()
         self.setFixedSize(QSize(70, 70))
         self.setToolButtonStyle(Qt.ToolButtonIconOnly)
@@ -222,20 +221,20 @@ class CustomSkillButton(QToolButton):
                           'smithing': ["Smithing"],
                           'woodycutting': ["Woodcutting"]}
 
-    def update_popup(self, pos_spawn):
+    def update_popup(self, pos_spawn) -> None:
         self._popup = BotPopUp(
             *self._bot_data[self._title], pos_spawn=pos_spawn)
         self._popup.send_info.connect(self._send_data)
         self._popup.show()
 
     @Slot()
-    def _send_data(self, bot_name):
+    def _send_data(self, bot_name) -> None:
         self.send_info.emit([self._title, bot_name])
 
 
 class CustomStartButton(QPushButton):
 
-    def __init__(self):
+    def __init__(self) -> None:
         super(CustomStartButton, self).__init__()
         self.setFixedSize(QSize(120, 35))
         self.setText('Start')
@@ -258,7 +257,7 @@ class CustomStartButton(QPushButton):
         if e != None:
             return super().mousePressEvent(e)
 
-    def set_start(self):
+    def set_start(self) -> None:
         self.started = False
         self.setText('Start')
         self.setStyleSheet(stylesheet.start_btn_default)
@@ -269,7 +268,7 @@ class BotPopUp(QFrame):
 
     send_info = Signal(str)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super(BotPopUp, self).__init__()
 
         self._bot_list = args
@@ -327,6 +326,6 @@ class BotPopUp(QFrame):
             self.bg_layout.addWidget(aux)
             self._btn_list.append(aux)
 
-    def _send_info(self, info):
+    def _send_info(self, info) -> None:
         self.send_info.emit(info)
         self.close()

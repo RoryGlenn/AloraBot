@@ -6,11 +6,11 @@ from .robot import Robot
 from time import sleep
 
 
-def custom_setup(robot):
+def custom_setup(robot) -> None:
     robot.click('configbtn', 2)
 
 
-def find_green(x, y, state, jump, box_traps):
+def find_green(x, y, state, jump, box_traps) -> None:
     search_y = y
 
     for i in range(1, box_traps + 1):
@@ -29,7 +29,7 @@ def find_green(x, y, state, jump, box_traps):
     return None
 
 
-def run():
+def run() -> None:
     # pyautogui.mouseInfo()
 
     box_traps = 5

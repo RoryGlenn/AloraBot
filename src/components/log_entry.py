@@ -9,7 +9,7 @@ from style import stylesheet
 
 class LogEntry(QFrame):
 
-    def __init__(self, type_='success'):
+    def __init__(self, type_='success') -> None:
         super(LogEntry, self).__init__()
         self.setFixedHeight(35)
         self.setLayout(QHBoxLayout())
@@ -48,5 +48,5 @@ class LogEntry(QFrame):
         self._info_container.layout().addWidget(
             self._info_label, alignment=Qt.AlignLeft)
 
-    def set_text(self, text: str):
+    def set_text(self, text: str) -> None:
         self._info_label.setText(text.capitalize())

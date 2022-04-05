@@ -10,7 +10,7 @@ from style import stylesheet
 
 class TitleBar(QFrame):
 
-    def __init__(self, parent):
+    def __init__(self, parent) -> None:
         super(TitleBar, self).__init__()
         self.setFixedHeight(30)
         self.setLayout(QHBoxLayout())
@@ -65,17 +65,17 @@ class TitleBar(QFrame):
         return super().mousePressEvent(event)
 
     @Slot()
-    def _minimize(self):
+    def _minimize(self) -> None:
         self.main_app.showMinimized()
 
     @Slot()
-    def _exit(self):
+    def _exit(self) -> None:
         self.main_app.close()
 
 
 class CustomButtom(QToolButton):
 
-    def __init__(self, icon, type_=None):
+    def __init__(self, icon, type_=None) -> None:
         super(CustomButtom, self).__init__()
 
         icon_size = QSize(14, 14) if type_ == None else QSize(14, 2)

@@ -8,7 +8,6 @@ import keyboard
 import pyautogui
 
 
-
 class RGBMage:
     """RGB Values for Mage"""
     RED = 15
@@ -36,9 +35,6 @@ class ObjName:
     MONKEY_BARS = "Monkeybars"
     DRYING_LINE = "Drying Line"
     HARVEST_TRAP = 'HarvestTrap'
-
-
-# DMM = DefaultMouseMove()
 
 
 class Orient:
@@ -202,7 +198,7 @@ class DefaultMouseMove:
         """Checks tool tip"""
         _x, _y = pyautogui.position()
         color = pyautogui.screenshot()
-        px_test = color.getpixel(_x, _y)
+        px_test = color.getpixel((_x, _y))
         return self.__obj_func_lookup.get(obj_name)(_x, _y, px_test, color)
 
     def mage(self, _x: int, _y: int, px_test: str, color: Image) -> bool:
@@ -212,7 +208,7 @@ class DefaultMouseMove:
         _y += 33
         for _ in range(0, 5):
             # checking for yellow, mage tooltip (no blue)
-            px_test = color.getpixel(_x, _y)
+            px_test = color.getpixel((_x, _y))
             if px_test[0] == RGBMage.MAX and \
                     px_test[1] == RGBMage.MAX and \
                     px_test[2] == RGBMage.MIN:
@@ -345,5 +341,3 @@ class DefaultMouseMove:
 
         print(f"{obj_name} second test failed")
         return False
-
-

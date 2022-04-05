@@ -39,7 +39,6 @@ class App(QMainWindow):
 def main() -> None:
     """Entry point for application"""
     app = QApplication(sys.argv)
-    # window = App()
     App()
     sys.exit(app.exec())
 

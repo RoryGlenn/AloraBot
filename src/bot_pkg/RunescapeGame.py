@@ -7,9 +7,6 @@ import time
 import os
 from path_config import INC
 
-# import win32api
-# import win32com
-
 import win32
 import win32com
 
@@ -18,14 +15,14 @@ log_handle = None
 
 
 
-def click(x, y):
+def click(x, y) -> None:
     win32.SetCursorPos((x, y))
     win32.mouse_event(win32com.MOUSEEVENTF_LEFTDOWN, 0, 0)
     time.sleep(0.1)  # This pauses the script for 0.1 seconds
     win32.mouse_event(win32com.MOUSEEVENTF_LEFTUP, 0, 0)
 
 
-def setAngle():
+def setAngle() -> None:
     click(911, 49)  # navigation
     time.sleep(1)
 
@@ -57,7 +54,7 @@ def setAngle():
     time.sleep(2.5)
 
 
-def RightClick(x, y):
+def RightClick(x, y) -> None:
     win32.SetCursorPos((x, y))
     time.sleep(0.2)
     win32.mouse_event(win32com.MOUSEEVENTF_RIGHTDOWN, 0, 0)
@@ -65,7 +62,7 @@ def RightClick(x, y):
     win32.mouse_event(win32com.MOUSEEVENTF_RIGHTUP, 0, 0)
 
 
-def LayFunction():
+def LayFunction() -> None:
     time.sleep(2)
     i = 0
     while True:
@@ -89,7 +86,7 @@ def LayFunction():
             break
 
 
-def GreenFunction():
+def GreenFunction() -> None:
     while True:
         path = os.path.join(INC, 'red.png')
         aramabutonured = pyautogui.locateOnScreen(
@@ -135,7 +132,7 @@ def GreenFunction():
         time.sleep(0.5)
 
 
-def start(setup, logger):
+def start(setup, logger) -> None:
     global log_handle
     log_handle = logger
     if not setup:
