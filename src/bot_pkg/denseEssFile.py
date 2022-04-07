@@ -5,9 +5,13 @@ import random
 
 import keyboard
 import pyautogui
-from path_config import RES_1366
-from pynput.mouse import Controller
 
+from path_config import RES_1366
+
+# import sys
+# sys.path.append(os.getcwd())
+
+from pynput.mouse import Controller
 from .basic_functions import DefaultMouseMove, Orient, ObjName
 
 

@@ -1,5 +1,4 @@
 *.code-workspace
-.idea
 .vscode
 *.cfg
 data/
