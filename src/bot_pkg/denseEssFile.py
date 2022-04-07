@@ -115,6 +115,7 @@ def rock_hop() -> int:
     global waiting
     global defaultAttempts
     global currentPhase
+    global wait_color
     
     reset_timer = 25
 
@@ -172,6 +173,7 @@ def mines_map() -> None:
     global currentPhase
     global waiting
     global defaultAttempts
+    global wait_color
 
     if not waiting:
         wait_color = DMM.grab_color()
