@@ -28,6 +28,16 @@ log_handle = None
 defaultAttempts = 0
 waiting = False
 
+class CurrentPhase:
+    BASE = "Base"
+    ROCK_HOP = "RockHop"
+    MINES_MAP = "MinesMap"
+    ROCK_LARGE = "Large Rock"
+    HOME = "Teleport Home"
+    BANK = "Bank"
+    DEPOSIT = "Deposit"
+
+
 
 def endProcess() -> None:
     global currentPhase
@@ -44,6 +54,8 @@ def base() -> int:
     global defaultAttempts
     global currentPhase
     global DMM
+    
+    reset_timer = 25
 
     if not waiting and defaultAttempts < 40:
         # Check in the "expected" spot for ease of access, then process for methodical checking
@@ -103,6 +115,8 @@ def rock_hop() -> int:
     global waiting
     global defaultAttempts
     global currentPhase
+    
+    reset_timer = 25
 
     if not waiting and defaultAttempts < 21:
         print("Looking for small rock")
@@ -187,6 +201,8 @@ def rock_large() -> int:
     global currentPhase
     global defaultAttempts
     global secondsMining
+    
+    reset_timer = 25
 
     if DMM.check_default_lookup(ObjName.ROCK_LARGE) and defaultAttempts < 30:
         print("Mining")
@@ -234,6 +250,9 @@ def bank() -> int:
     global DMM
     global defaultAttempts
     global currentPhase
+    global waiting
+
+    reset_timer = 25
 
     if not waiting:
         if DMM.check_default_lookup(ObjName.BANK) and defaultAttempts < 30:
@@ -268,7 +287,7 @@ def bank() -> int:
             print("found picture!")
             log_handle.send_info(["Found picture", 'success'])
             print(str(location.x) + ", " + str(location.y))
-            currentPhase = "Deposit"
+            currentPhase = CurrentPhase.DEPOSIT
             waiting = False
             reset_timer = 3000
         except Exception as exception:
@@ -289,7 +308,7 @@ def deposit() -> None:
         pyautogui.moveTo(location.x + 5, location.y - 35)
         pyautogui.click()
         waiting = False
-        currentPhase = "Base"
+        currentPhase = CurrentPhase.BASE
         ORIENT.down_orient()
         defaultAttempts = 0
 
@@ -305,18 +324,18 @@ def denseEssProcess(current_phase, waiting_, seconds_mining, logger) -> None:
 
     ORIENT.finish_orient()
 
-    if currentPhase == "Base":
+    if currentPhase == CurrentPhase.BASE:
         reset_timer = base()
-    elif currentPhase == "RockHop":
+    elif currentPhase == CurrentPhase.ROCK_HOP:
         reset_timer = rock_hop()
-    elif currentPhase == "MinesMap":
+    elif currentPhase == CurrentPhase.MINES_MAP:
         mines_map()
-    elif currentPhase == "Large Rock":
+    elif currentPhase == CurrentPhase.ROCK_LARGE:
         reset_timer = rock_large()
-    elif currentPhase == "Teleport Home":
+    elif currentPhase == CurrentPhase.HOME:
         reset_timer = teleport_home()
-    elif currentPhase == "Bank":
+    elif currentPhase == CurrentPhase.BANK:
         reset_timer = bank()
-    elif currentPhase == "Deposit":
+    elif currentPhase == CurrentPhase.DEPOSIT:
         deposit()
     return reset_timer
