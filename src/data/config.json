@@ -1,0 +1,143 @@
+{
+  "runecrafting": {
+    "confidence": {
+      "default_confidence": 0.8,
+      "chest": 0.7,
+      "compass": 0.7,
+      "altar": 0.68,
+      "giant": 0.9,
+      "med": 0.9,
+      "large": 0.9
+    },
+    "sleep_timers": {
+      "altar": 4,
+      "deathrune": 6,
+      "continue": 1.5,
+      "chest": 5,
+      "bank": 2,
+      "giant": 0.2,
+      "large": 0.2,
+      "med": 0.2
+    }
+  },
+  "seers": {
+    "confidence": {
+      "default_confidence": 0.65,
+      "first": 0.75,
+      "second": 0.68,
+      "third": 0.55,
+      "fourth": 0.55,
+      "fifth": 0.6,
+      "sixth": 0.75,
+      "mark": 0.6
+    },
+    "sleep_timers": {
+      "home": 3,
+      "first": 4.5,
+      "third": 8.5,
+      "fourth": 5,
+      "fifth": 6,
+      "sixth": 4.5
+    }
+  },
+  "pollivneach": {
+    "confidence": {
+      "default_confidence": 0.60,
+      "palm":  0.7,
+      "banner": 0.65,
+      "basket": 0.74,
+      "market": 0.66,
+      "wall": 0.67
+    },
+    "sleep_timers": {
+      "home": 1.5,
+      "palm": 6.3,
+      "basket": 5.1,
+      "market": 4.8,
+      "banner": 4,
+      "gap" : 3.15,
+      "tree": 4.35,
+      "wall": 1.4,
+      "ladder": 7,
+      "secondtree" : 2.35,
+      "line": 3.4,
+      "coin" : 3.8
+    }
+  },
+  "cooker": {
+    "confidence": {
+      "default_confidence": 0.8,
+      "fire" : 0.7,
+      "bank" : 0.7
+    },
+    "sleep_timers": {
+      "fire" : 0.6,
+      "bank": 2
+    }
+  },
+  "construction": {
+    "confidence": {
+      "default_confidence": 0.8,
+      "planks": 0.85
+    },
+    "sleep_timers": {
+    }
+  },
+  "wines": {
+    "confidence": {
+      "default_confidence": 0.8
+    },
+    "sleep_timers": {
+    }
+  },
+    "smithing": {
+    "confidence": {
+      "default_confidence": 0.8,
+      "anvil": 0.85
+    },
+    "sleep_timers": {
+    }
+  },
+    "bloods": {
+    "confidence": {
+      "default_confidence": 0.76,
+      "chest": 0.79,
+      "bank": 0.79,
+      "mage": 0.74,
+      "blood": 0.6,
+      "bloodclose": 0.6
+    },
+    "sleep_timers": {
+      "chest": 4,
+      "bank": 2,
+      "mage": 3.5,
+      "altar": 7,
+      "blood": 1.5
+
+    }
+  },
+      "ardouge": {
+    "confidence": {
+      "default_confidence": 0.7,
+      "mark": 0.5,
+      "first": 0.68,
+      "second": 0.62,
+      "third": 0.66,
+      "fourth": 0.63,
+      "fifth": 0.67,
+      "sixth": 0.64,
+      "seven": 0.6
+    },
+    "sleep_timers": {
+
+    }
+  },
+     "woodcutter": {
+    "confidence": {
+      "default_confidence": 0.7
+    },
+    "sleep_timers": {
+
+    }
+  }
+}
