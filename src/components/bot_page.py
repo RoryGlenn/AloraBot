@@ -41,7 +41,7 @@ class BotPage(QFrame):
         # self._key_start = keyboard.add_hotkey(
         #     'underscore', self._keyboard_controller)
         # self._key_stop = keyboard.add_hotkey(
-            # 'equal', self._keyboard_controller)
+        # 'equal', self._keyboard_controller)
 
         self._btns_frame = QFrame()
         self._btns_frame.setLayout(QGridLayout())
@@ -52,6 +52,7 @@ class BotPage(QFrame):
         self._skills_title = QLabel('skills'.capitalize())
         self._skills_title.setStyleSheet(stylesheet.logo_text)
         utils.set_font(self._skills_title, size=12)
+
 
         self._mining_btn = CustomSkillButton('mining')
         self._runecrafting_btn = CustomSkillButton('runecrafting')
@@ -78,6 +79,7 @@ class BotPage(QFrame):
         self._btns_frame.layout().addWidget(self._smithing_btn, 2, 2)
         self._btns_frame.layout().addWidget(self._woodycutting_btn, 2, 3)
 
+        # Start container
         self._start_container = QFrame()
         self._start_container.setLayout(QVBoxLayout())
         self._start_container.layout().setSpacing(10)
@@ -85,6 +87,7 @@ class BotPage(QFrame):
         self._start_container.layout().setContentsMargins(QMargins(0, 0, 0, 0))
         self.layout().addWidget(self._start_container)
 
+        # Current step title
         self._step_title = QLabel('Current step:'.capitalize())
         self._step_title.setStyleSheet(stylesheet.logo_text)
         utils.set_font(self._step_title, size=10)
@@ -108,6 +111,11 @@ class BotPage(QFrame):
         self._start_mouse_info.clicked.connect(self._mouse_info_handle)
         self._start_container.layout().addWidget(self._start_mouse_info)
 
+        # Creates mouse coordinates when feedback is enabled
+        self._mouse_coords = QLabel('mouse coordinates: ')
+        self._mouse_coords.setStyleSheet(stylesheet.mouse_btn)
+        utils.set_font(self._mouse_coords, size=8, italic=True)
+        self._start_container.layout().addWidget(self._mouse_coords)
         self._mouse_info_enabled = False
 
         self._steps_list = {'Dense Ess': [
@@ -174,12 +182,14 @@ class BotPage(QFrame):
     def _mouse_info_handle(self) -> None:
         if self._mouse_info_enabled:
             self._mouse_info_enabled = False
-            self._start_mouse_info.setText('start mouse info'.capitalize())
+            self._start_mouse_info.setText('Start mouse info')
+
             # stop feedback
             self._worker.disable_feedback()
         else:
             self._mouse_info_enabled = True
-            self._start_mouse_info.setText('stop mouse info'.capitalize())
+            self._start_mouse_info.setText('Stop mouse info')
+
             # start feedback
             self._worker.enable_feedback()
 

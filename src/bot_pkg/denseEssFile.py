@@ -8,9 +8,6 @@ import pyautogui
 
 from path_config import RES_1366
 
-# import sys
-# sys.path.append(os.getcwd())
-
 from pynput.mouse import Controller
 from .basic_functions import DefaultMouseMove, Orient, ObjName
 
@@ -32,6 +29,7 @@ log_handle = None
 defaultAttempts = 0
 waiting = False
 
+
 class CurrentPhase:
     BASE = "Base"
     ROCK_HOP = "RockHop"
@@ -40,7 +38,6 @@ class CurrentPhase:
     HOME = "Teleport Home"
     BANK = "Bank"
     DEPOSIT = "Deposit"
-
 
 
 def endProcess() -> None:
@@ -58,7 +55,7 @@ def base() -> int:
     global defaultAttempts
     global currentPhase
     global DMM
-    
+
     reset_timer = 25
 
     if not waiting and defaultAttempts < 40:
@@ -120,7 +117,7 @@ def rock_hop() -> int:
     global defaultAttempts
     global currentPhase
     global wait_color
-    
+
     reset_timer = 25
 
     if not waiting and defaultAttempts < 21:
@@ -207,7 +204,7 @@ def rock_large() -> int:
     global currentPhase
     global defaultAttempts
     global secondsMining
-    
+
     reset_timer = 25
 
     if DMM.check_default_lookup(ObjName.ROCK_LARGE) and defaultAttempts < 30:

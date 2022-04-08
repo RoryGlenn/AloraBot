@@ -204,7 +204,7 @@ class Botr(QObject):
             _ss += ', ' + str(color[1]).rjust(3)
             _ss += ', ' + str(color[2]).rjust(3) + ')'
 
-            # label_mouse_info.config(text=ss);
+            label_mouse_info.config(text=_ss)
             # probably send to log
         if not self._feedback_active:
             self._timer_feedback.stop()
