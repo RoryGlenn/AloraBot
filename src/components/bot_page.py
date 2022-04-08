@@ -105,7 +105,6 @@ class BotPage(QFrame):
 
         ##################################
         # Mouse tracking
-
         self._start_mouse_info = QPushButton('start mouse info'.capitalize())
         self._start_mouse_info.setStyleSheet(stylesheet.mouse_btn)
         utils.set_font(self._start_mouse_info, size=8, italic=True)
@@ -114,7 +113,7 @@ class BotPage(QFrame):
         self._start_container.layout().addWidget(self._start_mouse_info)
 
         # Creates mouse coordinates when feedback is enabled
-        self._mouse_coords = QLabel('mouse coordinates: ')
+        self._mouse_coords = QLabel('')
         self._mouse_coords.setStyleSheet(stylesheet.logo_text)
         utils.set_font(self._mouse_coords, size=8, italic=True)
         self._start_container.layout().addWidget(self._mouse_coords)
@@ -187,13 +186,15 @@ class BotPage(QFrame):
             self._start_mouse_info.setText('Start mouse info')
 
             # stop feedback
-            self._worker.disable_feedback()
+            self._worker.disable_mouse_tracking()
+            # self._mouse_coords.setText(' ')
         else:
             self._mouse_info_enabled = True
             self._start_mouse_info.setText('Stop mouse info')
 
             # start feedback
-            self._worker.enable_feedback(self._mouse_coords)
+            self._worker.enable_mouse_tracking(self._mouse_coords)
+            
 
     def _clean_step_combo(self) -> None:
         while (self._step_combo.count() != 0):
