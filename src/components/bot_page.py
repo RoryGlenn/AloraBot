@@ -6,7 +6,7 @@ from thread import Worker
 from PySide6.QtWidgets import (
     QFrame, QToolButton, QLabel, QVBoxLayout, QGridLayout,
     QComboBox, QPushButton, QGraphicsDropShadowEffect)
-from PySide6.QtCore import Qt, QSize, QMargins, Slot, QRect, QPoint, Signal
+from PySide6.QtCore import Qt, QSize, QMargins, Slot, QRect, QPoint, Signal, QThreadPool, QTimer
 from PySide6.QtGui import QPixmap, QColor
 
 
@@ -31,6 +31,7 @@ class BotPage(QFrame):
         self._bot_name = str()
         self._bot_handle = bot_handle
 
+
         # self._key_start = QShortcut(QKeySequence('1'), self)
         # self._key_start.activated.connect(self._keyboard_controller)
         #
@@ -52,7 +53,6 @@ class BotPage(QFrame):
         self._skills_title = QLabel('skills'.capitalize())
         self._skills_title.setStyleSheet(stylesheet.logo_text)
         utils.set_font(self._skills_title, size=12)
-
 
         self._mining_btn = CustomSkillButton('mining')
         self._runecrafting_btn = CustomSkillButton('runecrafting')
@@ -104,6 +104,18 @@ class BotPage(QFrame):
         self._start_container.layout().addWidget(
             self._start_btn, alignment=Qt.AlignCenter)
 
+
+        ##################################
+        ### Mouse tracking
+
+        # self.mouse_thread = QThreadPool()
+        # self.mouse_thread.setMaxThreadCount(1)
+        # self.mouse_timer = QTimer()
+        # # sets how often the gui will be updated with the new values
+        # self.mouse_timer.setInterval(1000)
+        # self.mouse_timer.timeout.connect(self.recurring_timer)
+        # self.mouse_timer.start()
+
         self._start_mouse_info = QPushButton('start mouse info'.capitalize())
         self._start_mouse_info.setStyleSheet(stylesheet.mouse_btn)
         utils.set_font(self._start_mouse_info, size=8, italic=True)
@@ -113,18 +125,19 @@ class BotPage(QFrame):
 
         # Creates mouse coordinates when feedback is enabled
         self._mouse_coords = QLabel('mouse coordinates: ')
-        self._mouse_coords.setStyleSheet(stylesheet.mouse_btn)
+        self._mouse_coords.setStyleSheet(stylesheet.logo_text)
         utils.set_font(self._mouse_coords, size=8, italic=True)
         self._start_container.layout().addWidget(self._mouse_coords)
         self._mouse_info_enabled = False
+        ##################################
+
 
         self._steps_list = {'Dense Ess': [
             "Find Wizard", "Fast Travel", "Climb Rock", "Walk to Runestone",
             "Mine", "Teleport Home", "Bank Deposit"],
-            'Pollivneach': [
-                "Base", "Barrel"],
-            'Donator Zone': [
-                "Set Traps"]}
+            'Pollivneach': ["Base", "Barrel"],
+            'Donator Zone': ["Set Traps"]
+        }
 
         self._mining_seconds_popup = AlertPopup(
             self.parent, 'Fill in', 'Seconds spend on mining')
@@ -178,6 +191,14 @@ class BotPage(QFrame):
         if data_list[1] == 'Dense Ess':
             self._mining_seconds_popup.show()
 
+
+    @Slot()
+    def _mouse_track(self) -> None:
+        """Tracks the coordinates of the mouse"""
+        # self._mouse_info_handle()
+
+
+
     @Slot()
     def _mouse_info_handle(self) -> None:
         if self._mouse_info_enabled:
@@ -192,6 +213,8 @@ class BotPage(QFrame):
 
             # start feedback
             self._worker.enable_feedback()
+
+
 
     def _clean_step_combo(self) -> None:
         while (self._step_combo.count() != 0):

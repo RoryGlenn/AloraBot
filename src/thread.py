@@ -1,8 +1,9 @@
 """thread.py - """
 
-from PySide6.QtCore import QThread, Signal, Slot
+from PySide6.QtCore import QThread, Signal, Slot, QThreadPool, QTimer
 
 import pyautogui
+from mouse_thread import MouseWorker
 
 from bot_r import Botr
 
@@ -19,6 +20,21 @@ class Worker(QThread):
         self.bot.stopped.connect(self.stopped_receiver)
         self.bot.send_info_.connect(self._info_receiver)
         self.stopped_sent = False
+
+        self.mouse_position_str = ''
+        self.threadpool = QThreadPool()
+        self.threadpool.setMaxThreadCount(1)
+        self.thread_stop = False
+        print("Multithreading with maximum %d threads" %
+              self.threadpool.maxThreadCount())
+
+        # self.timer = QTimer()
+        # # sets how often the gui will be updated with the new values
+        # # when mouse tracking is enabled
+        # self.timer.setInterval(1000)
+        # self.timer.timeout.connect(self.recurring_timer)
+        # self.timer.start()
+        # self.mouse_counter = 0
 
     def mouseMoveEvent(self, event) -> None:
         self.label.setText('Mouse coords: ( %d : %d )' %
@@ -49,38 +65,68 @@ class Worker(QThread):
     def _info_receiver(self, value: list) -> None:
         self.send_info_.emit(value)
 
+    def set_mouse_position(self, progress_callback) -> None:
+        # Get and print the mouse coordinates.
+        while True:
+            if self.thread_stop:
+                break
+            
+            x, y = pyautogui.position()
+            pos_x = "X: " + str(x).rjust(4)
+            pos_y = "Y:" + str(y).rjust(4)
+            position_str = pos_x + ', ' + pos_y
+
+            if not pyautogui.onScreen(x, y):
+                # Pixel color can only be found for the primary monitor, and also not on mac due to the screenshot having the mouse cursor in the way.
+                pixelColor = ("NaN", "NaN", "NaN")
+            else:
+                # NOTE: On Windows & Linux, getpixel() returns a 3-integer tuple, but on macOS it returns a 4-integer tuple.
+                pixelColor = pyautogui.pyscreeze.screenshot().getpixel((x, y))
+
+            r = str(pixelColor[0]).rjust(3)
+            g = str(pixelColor[1]).rjust(3)
+            b = str(pixelColor[2]).rjust(3)
+
+            self.mouse_position_str = position_str + " RBG: (" + \
+                r + ', ' + \
+                g + ', ' + \
+                b + ')'
+
+            print(self.mouse_position_str)
+        
+        self.thread_stop = False
+
+    def print_output(self, s):
+        print(s)
+
+    def progress_fn(self, n):
+        print("%d%% done" % n)
+
+    def thread_complete(self):
+        print("Mouse Tracking Finished!")
+
+    def recurring_timer(self):
+        self.mouse_counter += 1
+        # self.l.setText("Counter: %d" % self.mouse_counter)
+        print("Counter: %d" % self.mouse_counter)
+
     def enable_feedback(self) -> None:
-        """Start mouse tracking"""
+        """Initializes mouse worker thread"""
 
-        # print("Press Ctrl-C to quit.")
-        
         print("Enabled feedback")
-        
-        # try:
-        #     while True:
-        #         # Get and print the mouse coordinates.
-        #         x, y = pyautogui.position()
-        #         positionStr = "X: " + str(x).rjust(4) + \
-        #                       ", Y: " + str(y).rjust(4)
 
-        #         if not pyautogui.onScreen(x, y):
-        #             # Pixel color can only be found for the primary monitor, and also not on mac due to the screenshot having the mouse cursor in the way.
-        #             pixelColor = ("NaN", "NaN", "NaN")
-        #         else:
-        #             # NOTE: On Windows & Linux, getpixel() returns a 3-integer tuple, but on macOS it returns a 4-integer tuple.
-        #             pixelColor = pyautogui.pyscreeze.screenshot().getpixel((x, y))
+        # Pass the function to execute
+        # Any other args, kwargs are passed to the run function
+        worker = MouseWorker(self.set_mouse_position)
+        # worker.signals.result.connect(self.print_output)
+        worker.signals.finished.connect(self.thread_complete)
+        # worker.signals.progress.connect(self.progress_fn)
 
-        #         positionStr += " RGB: (" + str(pixelColor[0]).rjust(3)
-        #         positionStr += ", " + str(pixelColor[1]).rjust(3)
-        #         positionStr += ", " + str(pixelColor[2]).rjust(3) + ")"
-
-        #         print(positionStr)
-        # except KeyboardInterrupt:
-        #     print()
+        # Execute
+        self.threadpool.start(worker)
 
     def disable_feedback(self) -> None:
         """Stop mouse tracking"""
-        # self.setMouseTracking(False)
-        # self.close()
-        
         print("Disabled feedback")
+        self.thread_stop = True
+        
