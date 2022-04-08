@@ -31,7 +31,6 @@ class BotPage(QFrame):
         self._bot_name = str()
         self._bot_handle = bot_handle
 
-
         # self._key_start = QShortcut(QKeySequence('1'), self)
         # self._key_start.activated.connect(self._keyboard_controller)
         #
@@ -104,17 +103,8 @@ class BotPage(QFrame):
         self._start_container.layout().addWidget(
             self._start_btn, alignment=Qt.AlignCenter)
 
-
         ##################################
-        ### Mouse tracking
-
-        # self.mouse_thread = QThreadPool()
-        # self.mouse_thread.setMaxThreadCount(1)
-        # self.mouse_timer = QTimer()
-        # # sets how often the gui will be updated with the new values
-        # self.mouse_timer.setInterval(1000)
-        # self.mouse_timer.timeout.connect(self.recurring_timer)
-        # self.mouse_timer.start()
+        # Mouse tracking
 
         self._start_mouse_info = QPushButton('start mouse info'.capitalize())
         self._start_mouse_info.setStyleSheet(stylesheet.mouse_btn)
@@ -130,7 +120,6 @@ class BotPage(QFrame):
         self._start_container.layout().addWidget(self._mouse_coords)
         self._mouse_info_enabled = False
         ##################################
-
 
         self._steps_list = {'Dense Ess': [
             "Find Wizard", "Fast Travel", "Climb Rock", "Walk to Runestone",
@@ -191,14 +180,6 @@ class BotPage(QFrame):
         if data_list[1] == 'Dense Ess':
             self._mining_seconds_popup.show()
 
-
-    @Slot()
-    def _mouse_track(self) -> None:
-        """Tracks the coordinates of the mouse"""
-        # self._mouse_info_handle()
-
-
-
     @Slot()
     def _mouse_info_handle(self) -> None:
         if self._mouse_info_enabled:
@@ -212,9 +193,7 @@ class BotPage(QFrame):
             self._start_mouse_info.setText('Stop mouse info')
 
             # start feedback
-            self._worker.enable_feedback()
-
-
+            self._worker.enable_feedback(self._mouse_coords)
 
     def _clean_step_combo(self) -> None:
         while (self._step_combo.count() != 0):

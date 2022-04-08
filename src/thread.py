@@ -1,6 +1,9 @@
 """thread.py - """
 
+from time import sleep
+
 from PySide6.QtCore import QThread, Signal, Slot, QThreadPool, QTimer
+from PySide6.QtWidgets import QLabel
 
 import pyautogui
 from mouse_thread import MouseWorker
@@ -70,7 +73,7 @@ class Worker(QThread):
         while True:
             if self.thread_stop:
                 break
-            
+
             x, y = pyautogui.position()
             pos_x = "X: " + str(x).rjust(4)
             pos_y = "Y:" + str(y).rjust(4)
@@ -87,38 +90,35 @@ class Worker(QThread):
             g = str(pixelColor[1]).rjust(3)
             b = str(pixelColor[2]).rjust(3)
 
-            self.mouse_position_str = position_str + " RBG: (" + \
-                r + ', ' + \
-                g + ', ' + \
-                b + ')'
+            position_str += " RBG: (" + r + ', ' + g + ', ' + b + ')'
+            self.display_mouse_position(position_str)
 
-            print(self.mouse_position_str)
-        
         self.thread_stop = False
 
-    def print_output(self, s):
-        print(s)
-
-    def progress_fn(self, n):
-        print("%d%% done" % n)
+    def display_mouse_position(self, position_str: str):
+        self.mouse_pos_label.setText(position_str)
 
     def thread_complete(self):
-        print("Mouse Tracking Finished!")
+        print("Mouse Tracking Stopped!")
 
-    def recurring_timer(self):
-        self.mouse_counter += 1
-        # self.l.setText("Counter: %d" % self.mouse_counter)
-        print("Counter: %d" % self.mouse_counter)
+    # def progress_fn(self, n):
+    #     print("%d%% done" % n)
 
-    def enable_feedback(self) -> None:
+    # def recurring_timer(self):
+    #     self.mouse_counter += 1
+    #     # self.l.setText("Counter: %d" % self.mouse_counter)
+    #     print("Counter: %d" % self.mouse_counter)
+
+    def enable_feedback(self, mouse_pos_label: QLabel) -> None:
         """Initializes mouse worker thread"""
 
-        print("Enabled feedback")
+        print("Mouse Tracking Started!")
+        self.mouse_pos_label = mouse_pos_label
 
         # Pass the function to execute
         # Any other args, kwargs are passed to the run function
         worker = MouseWorker(self.set_mouse_position)
-        # worker.signals.result.connect(self.print_output)
+        # worker.signals.result.connect(self.display_mouse_position)
         worker.signals.finished.connect(self.thread_complete)
         # worker.signals.progress.connect(self.progress_fn)
 
@@ -127,6 +127,4 @@ class Worker(QThread):
 
     def disable_feedback(self) -> None:
         """Stop mouse tracking"""
-        print("Disabled feedback")
         self.thread_stop = True
-        
